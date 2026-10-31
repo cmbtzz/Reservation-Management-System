@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="校园自习室预约管理系统 HTML CSS 界面原型">
+  <title>校园自习室预约管理系统 · 原型入口</title>
+  <link rel="stylesheet" href="common.css">
+</head>
+<body class="landing">
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="icon-seat" viewBox="0 0 24 24"><path d="M7 12V6.5A2.5 2.5 0 0 1 9.5 4h5A2.5 2.5 0 0 1 17 6.5V12M7 12h10M7 12v5m10-5v5M5 17h14M8 21h8M9 9h6"/></symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.5c.7-4 3-6 6.5-6s5.8 2 6.5 6"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v5.2c0 4.5-2.4 7.8-7 9.8-4.6-2-7-5.3-7-9.8V6l7-3Z"/><path d="m9.2 12 1.8 1.8 4-4"/></symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+      <symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16.5 9"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="landing-shell">
+    <header class="landing-header">
+      <div class="landing-brand">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#icon-seat"></use></svg></span>
+        <div>
+          <div class="brand-name">座间</div>
+          <div class="brand-sub">校园自习室预约管理系统</div>
+        </div>
+      </div>
+      <div class="landing-meta"><span>软件工程 · 需求分析</span><strong>HTML / CSS 原型</strong></div>
+    </header>
+
+    <main class="landing-main" id="main">
+      <section class="landing-copy" aria-labelledby="landing-title">
+        <div class="landing-eyebrow">从找空位到安心学习，只需一次选择</div>
+        <h1 id="landing-title">把空座，<br>变成可安排的<span class="outline">时间。</span></h1>
+        <p class="landing-lead">学生按日期、楼栋与时段找到真实可用的座位；管理员在同一套系统里维护开放时间、确认签到、处理违约并观察自习室的使用节奏。</p>
+        <div class="landing-roles" aria-label="选择原型角色">
+          <a class="role-card" href="student.html">
+            <div class="role-card-head">
+              <span class="role-card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg></span>
+              <svg class="icon role-card-arrow" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </div>
+            <div><strong>进入学生端</strong><span>发现座位 · 预约 · 签到</span></div>
+          </a>
+          <a class="role-card" href="admin.html">
+            <div class="role-card-head">
+              <span class="role-card-icon"><svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg></span>
+              <svg class="icon role-card-arrow" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </div>
+            <div><strong>进入管理端</strong><span>场地维护 · 秩序管理 · 统计</span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="landing-visual" aria-label="自习室座位平面图预览">
+        <div class="blueprint-panel">
+          <div class="blueprint-head">
+            <div><div class="blueprint-title">静学阅览室 · A301</div><div class="blueprint-sub">10 月 24 日 / 14:00–16:00</div></div>
+            <span class="blueprint-status">41 个空闲</span>
+          </div>
+          <div class="plan-room">
+            <span class="plan-window"></span>
+            <span class="plan-window-label">采光窗</span>
+            <div class="plan-aisle"></div>
+            <div class="plan-desks" aria-hidden="true">
+              <span class="plan-desk occupied">A01</span><span class="plan-desk">A02</span><span class="plan-desk">A03</span><span class="plan-desk">A04</span>
+              <span class="plan-desk">A05</span><span class="plan-desk selected">A06</span><span class="plan-desk">A07</span><span class="plan-desk occupied">A08</span>
+              <span class="plan-desk">A09</span><span class="plan-desk">A10</span><span class="plan-desk">A11</span><span class="plan-desk">A12</span>
+              <span class="plan-desk occupied">A13</span><span class="plan-desk">A14</span><span class="plan-desk">A15</span><span class="plan-desk">A16</span>
+              <span class="plan-desk">A17</span><span class="plan-desk occupied">A18</span><span class="plan-desk">A19</span><span class="plan-desk">A20</span>
+            </div>
+            <span class="plan-door"></span>
+            <span class="plan-door-label">入口</span>
+            <div class="plan-caption"><span class="free"><i></i>可用</span><span class="busy"><i></i>使用中</span></div>
+          </div>
+        </div>
+        <div class="floating-reservation" aria-label="预约摘要">
+          <div class="floating-reservation-head"><span>已选择座位</span><span class="pill pill-green">可预约</span></div>
+          <div class="floating-seat">A-06</div>
+          <div class="floating-meta">靠窗 · 有插座 · 14:00–16:00</div>
+          <div class="floating-bar"><span></span></div>
+          <div class="floating-foot"><span>预约后保留 10 分钟</span><span>1 / 1</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="landing-footer">
+      <span>校园自习室预约管理系统 · 需求分析实验界面原型</span>
+      <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    </footer>
+  </div>
+</body>
+</html>

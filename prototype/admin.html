@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="校园自习室预约管理系统管理端 HTML CSS 原型">
+  <title>管理端 · 校园自习室预约管理系统</title>
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="icon-seat" viewBox="0 0 24 24"><path d="M7 12V6.5A2.5 2.5 0 0 1 9.5 4h5A2.5 2.5 0 0 1 17 6.5V12M7 12h10M7 12v5m10-5v5M5 17h14M8 21h8M9 9h6"/></symbol>
+      <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="15" rx="2.5"/><path d="M7.5 3v5M16.5 3v5M3.5 10h17M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01"/></symbol>
+      <symbol id="icon-room" viewBox="0 0 24 24"><path d="M4 21V5.5L12 3v18M12 6h8v15M2.5 21h19M7.5 8h.01M7.5 12h.01M7.5 16h.01M16 10h.01M16 14h.01"/></symbol>
+      <symbol id="icon-warning" viewBox="0 0 24 24"><path d="m12 3 9 16H3L12 3Z"/><path d="M12 9v5M12 17h.01"/></symbol>
+      <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.5c.7-4 3-6 6.5-6s5.8 2 6.5 6"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3 19 6v5.2c0 4.5-2.4 7.8-7 9.8-4.6-2-7-5.3-7-9.8V6l7-3Z"/><path d="m9.2 12 1.8 1.8 4-4"/></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.5"/><path d="m16 16 4 4"/></symbol>
+      <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 9.5a6 6 0 0 0-12 0c0 7-2.3 7.5-2.3 7.5h16.6S18 16.5 18 9.5ZM9.6 20h4.8"/></symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="icon-chevron-down" viewBox="0 0 24 24"><path d="m7 9.5 5 5 5-5"/></symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M14 7l5 5-5 5"/></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3.5 19c.5-3.5 2.3-5.4 5.5-5.4s5 1.9 5.5 5.4M15.5 6.3a3 3 0 0 1 0 5.7M16.5 14c2.5.4 3.8 2 4.2 4.5"/></symbol>
+      <symbol id="icon-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5M18.2 9A7 7 0 0 0 6 7.5L4 12M5.8 15A7 7 0 0 0 18 16.5l2-4.5"/></symbol>
+      <symbol id="icon-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16.5 9"/></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></symbol>
+      <symbol id="icon-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v5l-4 2v-7L3 5Z"/></symbol>
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="icon-edit" viewBox="0 0 24 24"><path d="m14.5 5.5 4 4M4 20l4.2-1 10.3-10.3a2.8 2.8 0 0 0-4-4L4.2 15 4 20Z"/></symbol>
+      <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+      <symbol id="icon-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+      <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10.5V17M12 7h.01"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app-shell admin-shell">
+    <aside class="sidebar" aria-label="管理端侧边导航">
+      <a class="brand" href="index.html" aria-label="返回原型首页">
+        <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#icon-shield"></use></svg></span>
+        <span><span class="brand-name">座间 · 管理台</span><span class="brand-sub" style="display:block">SPACE OPERATIONS</span></span>
+      </a>
+      <div class="sidebar-label">运营中心</div>
+      <nav class="nav-list" aria-label="管理端主导航">
+        <button class="nav-item active" type="button" data-view-target="overview" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg><span>数据概览</span></button>
+        <button class="nav-item" type="button" data-view-target="bookings"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg><span>预约管理</span><span class="nav-badge">7</span></button>
+        <button class="nav-item" type="button" data-view-target="rooms"><svg class="icon" aria-hidden="true"><use href="#icon-room"></use></svg><span>场地与座位</span></button>
+        <button class="nav-item" type="button" data-view-target="violations"><svg class="icon" aria-hidden="true"><use href="#icon-warning"></use></svg><span>违约处理</span><span class="nav-badge">4</span></button>
+        <button class="nav-item" type="button" data-view-target="stats"><svg class="icon" aria-hidden="true"><use href="#icon-chart"></use></svg><span>使用统计</span></button>
+      </nav>
+      <div class="sidebar-label">系统</div>
+      <nav class="nav-list" aria-label="系统与帮助">
+        <button class="nav-item" type="button" data-toast="操作日志" data-toast-copy="正式版本记录登录、预约状态调整与违约处理操作。"><svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg><span>操作日志</span></button>
+        <button class="nav-item" type="button" data-toast="帮助中心" data-toast-copy="值班管理员操作手册将在正式系统中提供。"><svg class="icon" aria-hidden="true"><use href="#icon-info"></use></svg><span>帮助中心</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-note"><strong>今日待处理 7 项</strong><p>4 条违约申诉，3 个签到异常。建议在闭馆前完成复核。</p></div>
+      <div class="sidebar-user">
+        <span class="avatar admin">管</span>
+        <span><span class="sidebar-user-name">值班管理员</span><span class="sidebar-user-meta">图书馆 · 三楼</span></span>
+        <svg class="icon icon-sm" style="margin-left:auto" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+      </div>
+    </aside>
+    <div class="sidebar-scrim" aria-hidden="true"></div>
+
+    <main class="main" id="main-content">
+      <header class="topbar">
+        <button class="icon-button sidebar-toggle" type="button" data-sidebar-toggle aria-label="打开导航"><svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg></button>
+        <div class="breadcrumb"><span>运营中心</span><span class="slash">/</span><span>2026 年 10 月 24 日</span><span class="slash">/</span><strong>值班视图</strong></div>
+        <label class="top-search" aria-label="搜索预约或用户">
+          <svg class="icon icon-sm" aria-hidden="true"><use href="#icon-search"></use></svg>
+          <input type="search" placeholder="搜索学号、预约编号或座位">
+          <span class="key-hint">⌘ K</span>
+        </label>
+        <div class="top-actions">
+          <button class="icon-button" type="button" data-toast="有 7 项待处理" data-toast-copy="包含未签到、迟到取消与申诉记录。" aria-label="通知"><svg class="icon" aria-hidden="true"><use href="#icon-bell"></use></svg><span class="notification-dot"></span></button>
+          <button class="icon-button" type="button" data-toast="管理员账号" data-toast-copy="当前角色拥有场地维护、签到确认和违约处理权限。" aria-label="管理员账号"><svg class="icon" aria-hidden="true"><use href="#icon-user"></use></svg></button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="view active" id="view-overview" aria-labelledby="overview-title">
+          <div class="page-head">
+            <div>
+              <div class="page-kicker">实时运营视图 · 最近更新于 13:42</div>
+              <h1 class="page-title" id="overview-title">今天的自习室，<span class="soft">正在发生什么。</span></h1>
+              <p class="page-subtitle">集中查看预约、签到、使用率与异常。遇到系统或网络问题可在此手动确认签到，并追踪每一条违约记录的处理结果。</p>
+            </div>
+            <div class="page-actions"><button class="btn btn-secondary" type="button" data-toast="数据已刷新" data-toast-copy="预约、签到和座位状态已同步。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-refresh"></use></svg>刷新数据</button><button class="btn btn-primary" type="button" data-toast="日报导出" data-toast-copy="已生成 2026 年 10 月 24 日运营日报。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-download"></use></svg>导出日报</button></div>
+          </div>
+
+          <section class="ops-strip" aria-label="今日核心指标">
+            <div class="metric"><div class="metric-head"><span>今日预约</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg></span></div><div class="metric-value"><strong>286</strong><span>次</span></div><div class="metric-foot"><span class="up">+12.4%</span>较上周六</div></div>
+            <div class="metric"><div class="metric-head"><span>已签到</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></span></div><div class="metric-value"><strong>198</strong><span>人</span></div><div class="metric-foot"><span class="up">69.2%</span>签到率</div></div>
+            <div class="metric"><div class="metric-head"><span>当前使用率</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-users"></use></svg></span></div><div class="metric-value"><strong>68</strong><span>%</span></div><div class="metric-foot"><span>156 / 229</span>个开放座位</div></div>
+            <div class="metric"><div class="metric-head"><span>待处理异常</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-warning"></use></svg></span></div><div class="metric-value"><strong>7</strong><span>项</span></div><div class="metric-foot"><span class="alert">3 项</span>将在 15 分钟内升级</div></div>
+          </section>
+
+          <div class="admin-grid">
+            <div class="admin-main">
+              <article class="card chart-card" aria-labelledby="heat-title">
+                <div class="chart-card-head">
+                  <div><h2 class="card-title" id="heat-title">一周使用热力</h2><p class="card-subtitle">按预约开始时段统计已占用座位，颜色越深表示使用越集中。</p></div>
+                  <div class="chart-filters"><button class="active" type="button">本周</button><button type="button">上周</button><button type="button">近 30 天</button></div>
+                </div>
+                <div class="heatmap-wrap">
+                  <div class="heatmap" role="img" aria-label="一周自习室使用热力图，午间和晚间时段使用率较高">
+                    <span class="heat-label"></span><span class="heat-hour">08</span><span class="heat-hour">09</span><span class="heat-hour">10</span><span class="heat-hour">11</span><span class="heat-hour">12</span><span class="heat-hour">13</span><span class="heat-hour">14</span><span class="heat-hour">15</span><span class="heat-hour">16</span><span class="heat-hour">17</span><span class="heat-hour">18</span><span class="heat-hour">19</span>
+                    <span class="heat-label">周一</span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-1"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span>
+                    <span class="heat-label">周二</span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span>
+                    <span class="heat-label">周三</span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span>
+                    <span class="heat-label">周四</span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-1"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span>
+                    <span class="heat-label">周五</span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span>
+                    <span class="heat-label">周六</span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span>
+                    <span class="heat-label">周日</span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-2"></span><span class="heat-cell heat-3"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-5"></span><span class="heat-cell heat-4"></span><span class="heat-cell heat-3"></span>
+                  </div>
+                  <div class="heat-legend"><span>较低</span><i></i><i></i><i></i><i></i><i></i><span>较高</span></div>
+                </div>
+              </article>
+
+              <article class="card" aria-labelledby="util-title">
+                <div class="card-header"><div><h2 class="card-title" id="util-title">自习室利用情况</h2><p class="card-subtitle">当前开放座位与已签到人数对比。</p></div><button class="text-link" type="button" data-view-target="rooms">管理场地<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button></div>
+                <div class="util-list">
+                  <div class="util-row"><div><div class="util-meta"><strong>静学阅览室 A301</strong><span>68 / 64 座</span></div><div class="util-track"><span style="width:88%"></span></div></div><span class="util-count">88%</span></div>
+                  <div class="util-row"><div><div class="util-meta"><strong>东区自习室 B204</strong><span>42 / 48 座</span></div><div class="util-track"><span style="width:74%"></span></div></div><span class="util-count">74%</span></div>
+                  <div class="util-row"><div><div class="util-meta"><strong>南苑研讨室 C112</strong><span>21 / 24 座</span></div><div class="util-track"><span style="width:63%"></span></div></div><span class="util-count">63%</span></div>
+                  <div class="util-row"><div><div class="util-meta"><strong>北馆静音区 A402</strong><span>25 / 40 座</span></div><div class="util-track"><span style="width:43%"></span></div></div><span class="util-count">43%</span></div>
+                </div>
+              </article>
+            </div>
+
+            <aside class="admin-side">
+              <section class="code-card" aria-labelledby="code-title">
+                <div class="code-card-label"><span id="code-title">当前签到码</span><span class="pill pill-green">13:40–13:45</span></div>
+                <div class="code-value">386204</div>
+                <div class="code-caption">适用于图书馆三楼全部自习室</div>
+                <div class="code-foot"><span>更新后 01:42</span><button class="code-copy" type="button" data-copy-code="386204"><svg class="icon icon-sm" aria-hidden="true" style="display:inline;vertical-align:-3px;margin-right:4px"><use href="#icon-copy"></use></svg>复制签到码</button></div>
+              </section>
+
+              <article class="card todo-card" aria-labelledby="todo-title">
+                <div class="card-header"><div><h2 class="card-title" id="todo-title">待你处理</h2><p class="card-subtitle">按紧急程度排列。</p></div><span class="pill pill-red">7 项</span></div>
+                <div class="todo-list">
+                  <div class="todo-row"><span class="todo-mark red"></span><div class="todo-info"><strong>3 个预约即将超过签到时限</strong><span>A301 · A-09、B204 · A-16 等</span></div><span class="todo-time">13:45</span></div>
+                  <div class="todo-row"><span class="todo-mark"></span><div class="todo-info"><strong>2 条违约申诉等待复核</strong><span>用户提交了网络异常说明。</span></div><span class="todo-time">今天</span></div>
+                  <div class="todo-row"><span class="todo-mark green"></span><div class="todo-info"><strong>1 个场地维护计划待确认</strong><span>C112 · 14:00 起更换照明设备</span></div><span class="todo-time">14:00</span></div>
+                </div>
+                <div class="todo-footer"><button class="text-link" type="button" data-view-target="bookings">查看预约异常<svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button></div>
+              </article>
+
+              <article class="card" aria-labelledby="activity-title">
+                <div class="card-header"><div><h2 class="card-title" id="activity-title">最近动态</h2><p class="card-subtitle">来自系统与学生端。</p></div></div>
+                <div class="activity-list">
+                  <div class="activity-item"><span class="activity-avatar">林</span><div class="activity-text"><strong>林同学完成签到</strong><span>静学阅览室 A301 · A-22 · 刚刚</span></div></div>
+                  <div class="activity-item"><span class="activity-avatar warn">周</span><div class="activity-text"><strong>周同学提交违约申诉</strong><span>预约编号 RES-20261024-1631 · 8 分钟前</span></div></div>
+                  <div class="activity-item"><span class="activity-avatar">系</span><div class="activity-text"><strong>系统自动释放未签到座位</strong><span>东区自习室 B204 · A-16 · 12 分钟前</span></div></div>
+                  <div class="activity-item"><span class="activity-avatar">管</span><div class="activity-text"><strong>管理员确认人工签到</strong><span>南苑研讨室 C112 · C-03 · 21 分钟前</span></div></div>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view" id="view-bookings" aria-labelledby="bookings-title">
+          <div class="admin-subhead"><div><div class="page-kicker">预约与签到状态</div><h1 id="bookings-title">预约管理</h1><p>检索预约、查看签到状态，并对异常预约执行人工确认或取消。</p></div><div class="page-actions"><button class="btn btn-secondary" type="button" data-toast="预约数据已导出" data-toast-copy="已生成今日预约明细 CSV。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-download"></use></svg>导出明细</button><button class="btn btn-primary" type="button" data-toast="人工签到" data-toast-copy="可通过预约编号为学生确认签到。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-check-circle"></use></svg>人工签到</button></div></div>
+          <div class="admin-toolbar">
+            <label class="admin-search"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg><input type="search" placeholder="搜索学号、姓名或预约编号"></label>
+            <select class="select-control" aria-label="按场地筛选"><option>全部场地</option><option>静学阅览室 A301</option><option>东区自习室 B204</option><option>南苑研讨室 C112</option></select>
+            <select class="select-control" aria-label="按状态筛选"><option>全部状态</option><option>待签到</option><option>使用中</option><option>已完成</option><option>未签到</option></select>
+            <button class="btn btn-secondary btn-sm" type="button" data-toast="已应用筛选" data-toast-copy="当前展示 2026 年 10 月 24 日的预约记录。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-filter"></use></svg>筛选</button>
+          </div>
+          <div class="card data-panel">
+            <div class="card-header"><div><h2 class="card-title">今日预约</h2><p class="card-subtitle">共 286 条，按开始时间排序。</p></div><span class="pill pill-blue">自动刷新</span></div>
+            <table class="admin-table">
+              <thead><tr><th>预约人</th><th>预约编号</th><th>场地 / 座位</th><th>时段</th><th>状态</th><th>签到方式</th><th style="text-align:right">操作</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cell-title"><span class="cell-mark">胡</span><div><strong>胡泽轩</strong><span>2024150501006</span></div></div></td><td class="numeric">RES-20261024-1842</td><td><span class="table-primary">静学阅览室 A301</span><span class="table-sub">A-18 · 靠窗</span></td><td class="numeric">14:00–16:00</td><td><span class="pill pill-amber">待签到</span></td><td>—</td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-toast="人工确认签到" data-toast-copy="请核对学号和座位后确认本次签到。">确认签到</button><button class="btn btn-ghost btn-sm" type="button" data-toast="预约详情" data-toast-copy="预约状态与签到记录已展示。">详情</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">林</span><div><strong>林晓</strong><span>2023150702118</span></div></div></td><td class="numeric">RES-20261024-1805</td><td><span class="table-primary">静学阅览室 A301</span><span class="table-sub">A-22 · 有插座</span></td><td class="numeric">14:00–16:00</td><td><span class="pill pill-green">使用中</span></td><td>签到码</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm" type="button" data-toast="预约详情" data-toast-copy="签到时间 13:58，当前使用正常。">详情</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">周</span><div><strong>周予安</strong><span>2024150801320</span></div></div></td><td class="numeric">RES-20261024-1631</td><td><span class="table-primary">东区自习室 B204</span><span class="table-sub">A-16 · 安静区</span></td><td class="numeric">13:00–14:00</td><td><span class="pill pill-red">待处理</span></td><td>—</td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-toast="签到异常" data-toast-copy="用户已提交网络异常申诉，核对后可在违约处理中撤销。">处理异常</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">陈</span><div><strong>陈可</strong><span>2022150401092</span></div></div></td><td class="numeric">RES-20261024-1527</td><td><span class="table-primary">南苑研讨室 C112</span><span class="table-sub">C-05 · 研讨桌</span></td><td class="numeric">12:00–14:00</td><td><span class="pill pill-green">已完成</span></td><td>管理员确认</td><td><div class="row-actions"><button class="btn btn-ghost btn-sm" type="button" data-toast="预约详情" data-toast-copy="签到时间 12:04，签退时间 13:51。">详情</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">杨</span><div><strong>杨嘉</strong><span>2023150201056</span></div></div></td><td class="numeric">RES-20261024-1412</td><td><span class="table-primary">静学阅览室 A301</span><span class="table-sub">A-09 · 靠窗</span></td><td class="numeric">13:00–15:00</td><td><span class="pill pill-amber">待签到</span></td><td>—</td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-toast="人工确认签到" data-toast-copy="请核对学号和座位后确认本次签到。">确认签到</button><button class="btn btn-ghost btn-sm" type="button" data-toast="预约详情" data-toast-copy="预约状态与签到记录已展示。">详情</button></div></td></tr>
+              </tbody>
+            </table>
+            <div class="table-footer"><span>显示 1–5 条，共 286 条记录</span><div class="pager"><button type="button" aria-label="上一页">‹</button><button class="active" type="button">1</button><button type="button">2</button><button type="button">3</button><button type="button" aria-label="下一页">›</button></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-rooms" aria-labelledby="rooms-title">
+          <div class="admin-subhead"><div><div class="page-kicker">空间基础数据</div><h1 id="rooms-title">场地与座位</h1><p>维护楼栋、自习室、座位属性与开放时间。点击座位可切换启用或维护状态。</p></div><div class="page-actions"><button class="btn btn-secondary" type="button" data-toast="开放时间" data-toast-copy="当前场地开放时间 08:00–22:00，周末不闭馆。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-clock"></use></svg>开放时间</button><button class="btn btn-primary" type="button" data-toast="新增自习室" data-toast-copy="正式版本中可录入楼栋、楼层、座位数和位置坐标。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-plus"></use></svg>新增自习室</button></div></div>
+          <div class="rooms-layout">
+            <aside class="card building-list" aria-labelledby="building-title">
+              <div class="card-header" style="padding:10px 10px 14px"><div><h2 class="card-title" id="building-title">场地目录</h2><p class="card-subtitle">4 个楼栋 · 8 个自习室</p></div></div>
+              <button class="building-item active" type="button"><span><strong>图书馆</strong><span>3 个自习室</span></span><b>229</b></button>
+              <button class="building-item" type="button"><span><strong>第二教学楼</strong><span>2 个自习室</span></span><b>96</b></button>
+              <button class="building-item" type="button"><span><strong>学生活动中心</strong><span>2 个自习室</span></span><b>48</b></button>
+              <button class="building-item" type="button"><span><strong>北馆</strong><span>1 个自习室</span></span><b>40</b></button>
+            </aside>
+            <article class="card" aria-labelledby="room-detail-title">
+              <div class="card-header"><div><div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><h2 class="card-title" id="room-detail-title">静学阅览室 A301</h2><span class="pill pill-green">开放中</span><span class="pill pill-grey">64 座</span></div><p class="card-subtitle">图书馆三楼 · 北侧采光窗 · 32 个插座位</p></div><button class="btn btn-secondary btn-sm" type="button" data-toast="编辑场地信息" data-toast-copy="可修改名称、容量、描述与开放状态。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-edit"></use></svg>编辑</button></div>
+              <div class="seat-manage-grid" aria-label="座位管理平面">
+                <button class="manage-seat" type="button">A01</button><button class="manage-seat" type="button">A02</button><button class="manage-seat occupied" type="button">A03</button><button class="manage-seat" type="button">A04</button><button class="manage-seat" type="button">A05</button><button class="manage-seat occupied" type="button">A06</button><button class="manage-seat" type="button">A07</button><button class="manage-seat" type="button">A08</button>
+                <button class="manage-seat occupied" type="button">A09</button><button class="manage-seat" type="button">A10</button><button class="manage-seat" type="button">A11</button><button class="manage-seat" type="button">A12</button><button class="manage-seat" type="button">A13</button><button class="manage-seat" type="button">A14</button><button class="manage-seat off" type="button">A15</button><button class="manage-seat" type="button">A16</button>
+                <button class="manage-seat" type="button">A17</button><button class="manage-seat occupied" type="button">A18</button><button class="manage-seat" type="button">A19</button><button class="manage-seat" type="button">A20</button><button class="manage-seat occupied" type="button">A21</button><button class="manage-seat" type="button">A22</button><button class="manage-seat" type="button">A23</button><button class="manage-seat" type="button">A24</button>
+                <button class="manage-seat" type="button">A25</button><button class="manage-seat occupied" type="button">A26</button><button class="manage-seat" type="button">A27</button><button class="manage-seat" type="button">A28</button><button class="manage-seat" type="button">A29</button><button class="manage-seat" type="button">A30</button><button class="manage-seat" type="button">A31</button><button class="manage-seat" type="button">A32</button>
+              </div>
+              <div class="card-header" style="border-top:1px solid var(--line);padding-top:15px"><div style="display:flex;gap:18px;flex-wrap:wrap;font-size:9.5px;color:var(--muted)"><span style="display:flex;align-items:center;gap:6px"><i class="legend-dot free" style="width:8px;height:8px;border-radius:3px;background:#e1f4ec;border:1px solid #8cc4b1"></i>可预约 41</span><span style="display:flex;align-items:center;gap:6px"><i style="width:8px;height:8px;border-radius:3px;background:#eadad4;border:1px solid #d9bfb7"></i>使用中 22</span><span style="display:flex;align-items:center;gap:6px"><i style="width:8px;height:8px;border-radius:3px;border:1px dashed #9caeaa"></i>维护 1</span></div><button class="btn btn-secondary btn-sm" type="button" data-toast="批量维护" data-toast-copy="可选中多个座位批量启用、停用或设为维护状态。">批量操作</button></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-violations" aria-labelledby="violations-title">
+          <div class="admin-subhead"><div><div class="page-kicker">秩序与申诉</div><h1 id="violations-title">违约处理</h1><p>复核未签到、迟到取消记录与学生申诉。处理结果会同步到学生端预约信用。</p></div><button class="btn btn-secondary" type="button" data-toast="规则说明" data-toast-copy="未签到记 1 次违约；30 天内累计 3 次时暂停预约权限 7 天。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-info"></use></svg>规则说明</button></div>
+          <div class="violation-summary">
+            <div class="violation-note"><h3>处理原则</h3><p>先核对预约、签到与场地事件记录，再决定保留或撤销。系统原因、场地临时关闭和无网络等情形应有书面说明；仅修改学生端显示而不能删除原始记录。</p></div>
+            <div class="violation-metrics"><div class="violation-mini"><span>今日新增</span><strong>4<small> 条</small></strong></div><div class="violation-mini"><span>待复核</span><strong>4<small> 条</small></strong></div><div class="violation-mini"><span>本周撤销</span><strong>7<small> 条</small></strong></div></div>
+          </div>
+          <div class="admin-toolbar"><label class="admin-search"><svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg><input type="search" placeholder="搜索学号、预约编号或申诉编号"></label><select class="select-control" aria-label="按违约类型筛选"><option>全部类型</option><option>未签到</option><option>迟到取消</option><option>逾期未签退</option></select><select class="select-control" aria-label="按处理状态筛选"><option>全部状态</option><option>待处理</option><option>已处理</option></select></div>
+          <div class="card data-panel">
+            <div class="card-header"><div><h2 class="card-title">待处理记录</h2><p class="card-subtitle">高优先级记录将在截止前 30 分钟提醒。</p></div><span class="pill pill-red">4 条待处理</span></div>
+            <table class="admin-table">
+              <thead><tr><th>学生</th><th>预约编号</th><th>场地 / 座位</th><th>违约类型</th><th>发生时间</th><th>申诉说明</th><th>状态</th><th style="text-align:right">处理</th></tr></thead>
+              <tbody>
+                <tr><td><div class="cell-title"><span class="cell-mark">周</span><div><strong>周予安</strong><span>2024150801320</span></div></div></td><td class="numeric">RES-20261024-1631</td><td><span class="table-primary">东区自习室 B204</span><span class="table-sub">A-16</span></td><td><span class="pill pill-red">未签到</span></td><td class="numeric">13:15</td><td>称校园网断连，已附故障截图。</td><td><span class="pill pill-amber" data-violation-status>待处理</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-handle-violation>处理</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">吴</span><div><strong>吴简</strong><span>2022150301221</span></div></div></td><td class="numeric">RES-20261024-1438</td><td><span class="table-primary">静学阅览室 A301</span><span class="table-sub">A-27</span></td><td><span class="pill pill-blue">迟到取消</span></td><td class="numeric">12:42</td><td>开始前 21 分钟取消，无补充说明。</td><td><span class="pill pill-amber" data-violation-status>待处理</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-handle-violation>处理</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">郑</span><div><strong>郑屿</strong><span>2023150601088</span></div></div></td><td class="numeric">RES-20261024-1207</td><td><span class="table-primary">南苑研讨室 C112</span><span class="table-sub">C-12</span></td><td><span class="pill pill-red">未签到</span></td><td class="numeric">10:15</td><td>称已在现场，但签到码已过期。</td><td><span class="pill pill-amber" data-violation-status>待处理</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-handle-violation>处理</button></div></td></tr>
+                <tr><td><div class="cell-title"><span class="cell-mark">孙</span><div><strong>孙一鸣</strong><span>2024150202110</span></div></div></td><td class="numeric">RES-20261023-1952</td><td><span class="table-primary">北馆静音区 A402</span><span class="table-sub">B-08</span></td><td><span class="pill pill-blue">逾期未签退</span></td><td class="numeric">昨天 20:06</td><td>场地临时闭馆，由保洁人员统一清场。</td><td><span class="pill pill-amber" data-violation-status>待处理</span></td><td><div class="row-actions"><button class="btn btn-secondary btn-sm" type="button" data-handle-violation>处理</button></div></td></tr>
+              </tbody>
+            </table>
+            <div class="table-footer"><span>原始记录不会被永久删除，撤销后保留审计说明</span><div class="pager"><button class="active" type="button">1</button></div></div>
+          </div>
+        </section>
+
+        <section class="view" id="view-stats" aria-labelledby="stats-title">
+          <div class="admin-subhead"><div><div class="page-kicker">从使用数据看资源配置</div><h1 id="stats-title">使用统计</h1><p>统计预约率、签到率与热门时段，为开放时间和座位维护提供依据。</p></div><div class="page-actions"><select class="select-control" aria-label="统计周期"><option>近 7 天</option><option>近 30 天</option><option>本学期</option></select><button class="btn btn-primary" type="button" data-toast="统计报告已导出" data-toast-copy="已生成近 7 天自习室使用报告。"><svg class="icon icon-sm" aria-hidden="true"><use href="#icon-download"></use></svg>导出报告</button></div></div>
+          <section class="ops-strip" aria-label="统计摘要">
+            <div class="metric"><div class="metric-head"><span>预约率</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg></span></div><div class="metric-value"><strong>78.6</strong><span>%</span></div><div class="metric-foot"><span class="up">+4.2%</span>较上周</div></div>
+            <div class="metric"><div class="metric-head"><span>签到率</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-check-circle"></use></svg></span></div><div class="metric-value"><strong>89.4</strong><span>%</span></div><div class="metric-foot"><span class="up">+1.7%</span>较上周</div></div>
+            <div class="metric"><div class="metric-head"><span>平均使用时长</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-clock"></use></svg></span></div><div class="metric-value"><strong>1.7</strong><span>小时</span></div><div class="metric-foot">与上周持平</div></div>
+            <div class="metric"><div class="metric-head"><span>高峰时段</span><span class="metric-icon"><svg class="icon" aria-hidden="true"><use href="#icon-chart"></use></svg></span></div><div class="metric-value"><strong>14–16</strong><span>时</span></div><div class="metric-foot">静学阅览室最高</div></div>
+          </section>
+          <div class="analytics-grid">
+            <article class="card">
+              <div class="card-header"><div><h2 class="card-title">工作日利用趋势</h2><p class="card-subtitle">浅色为预约率，深色为签到率。</p></div><span class="pill pill-green">7 天</span></div>
+              <div class="bar-chart" role="img" aria-label="周一至周日预约率与签到率柱状图">
+                <div class="bar-group"><span class="bar" style="height:72%"></span><span class="bar alt" style="height:64%"></span><span class="bar-label">周一</span></div>
+                <div class="bar-group"><span class="bar" style="height:78%"></span><span class="bar alt" style="height:70%"></span><span class="bar-label">周二</span></div>
+                <div class="bar-group"><span class="bar" style="height:75%"></span><span class="bar alt" style="height:68%"></span><span class="bar-label">周三</span></div>
+                <div class="bar-group"><span class="bar" style="height:81%"></span><span class="bar alt" style="height:72%"></span><span class="bar-label">周四</span></div>
+                <div class="bar-group"><span class="bar" style="height:84%"></span><span class="bar alt" style="height:77%"></span><span class="bar-label">周五</span></div>
+                <div class="bar-group"><span class="bar" style="height:91%"></span><span class="bar alt" style="height:80%"></span><span class="bar-label">周六</span></div>
+                <div class="bar-group"><span class="bar" style="height:67%"></span><span class="bar alt" style="height:59%"></span><span class="bar-label">周日</span></div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-header"><div><h2 class="card-title">签到状态分布</h2><p class="card-subtitle">近 7 天共 1,342 条预约。</p></div><button class="text-link" type="button" data-toast="状态明细" data-toast-copy="可下钻查看每种状态对应的预约记录。">查看明细<svg class="icon" aria-hidden="true"><use href="#icon-arrow-up-right"></use></svg></button></div>
+              <div class="donut-wrap">
+                <div class="donut" role="img" aria-label="签到状态分布：已签到 71%，未签到 15%，已取消 14%"><div class="donut-center"><strong>89.4%</strong><span>有效签到率</span></div></div>
+                <div class="donut-legend"><div class="donut-item"><i></i>已签到 <strong>71%</strong></div><div class="donut-item"><i></i>未签到 <strong>15%</strong></div><div class="donut-item"><i></i>已取消 <strong>14%</strong></div></div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="移动端快捷导航">
+    <button class="active" type="button" data-view-target="overview"><svg class="icon" aria-hidden="true"><use href="#icon-grid"></use></svg><span>概览</span></button>
+    <button type="button" data-view-target="bookings"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"></use></svg><span>预约</span></button>
+    <button type="button" data-view-target="rooms"><svg class="icon" aria-hidden="true"><use href="#icon-room"></use></svg><span>场地</span></button>
+    <button type="button" data-view-target="violations"><svg class="icon" aria-hidden="true"><use href="#icon-warning"></use></svg><span>处理</span></button>
+  </nav>
+  <div class="toast-region" aria-live="polite" aria-atomic="false"></div>
+  <script src="app.js"></script>
+</body>
+</html>
