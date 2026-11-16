@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="2320" viewBox="0 0 2600 2320" role="img" aria-labelledby="title desc">
+<title id="title">校园自习室预约管理系统：核心类图（含方法）</title>
+<desc id="desc">依据课程第五章第58、65、68至70页以及项目设计文档第3、4节补充实体操作。canCancel检查待签到状态且开始前严格大于30分钟；canCheckIn检查待签到状态以及开始后15分钟内的半开时间窗口；startUse与cancel复用相应条件，markNoShow仅适用于已过截止的待签到预约。complete仅允许使用中到已完成。overlaps采用左闭右开时段，不自行替代有效预约筛选。review修改违约处理状态并生成处理事件，不恢复预约终态。方法是本次补充的实体设计，不是已实现代码。</desc>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}</style>
+<rect x="0" y="0" width="2600" height="2320" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="50" y="60" font-size="39" text-anchor="start" fill="#193747" font-weight="600">核心类图 · 属性、方法与关联</text>
+<text x="50" y="107" font-size="25" text-anchor="start" fill="#526777" font-weight="400">每个类按“类名—属性—操作”分区；方法根据预约、履约与违约业务规则补充。</text>
+<g data-class="StudyRoom">
+<rect x="60" y="165" width="700" height="324" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="410.0" y="200" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">StudyRoom</text>
+<text x="410.0" y="232" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">自习室</text>
+<path d="M60,249 L760,249" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="82" y="284" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="82" y="318" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- buildingId: Long</text>
+<text x="82" y="352" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- name: String</text>
+<text x="82" y="386" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+<path d="M60,408 L760,408" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="82" y="432" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ isEnabled(): Boolean</text>
+<text x="82" y="466" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ changeStatus(status: String): void</text>
+</g>
+<g data-class="Seat">
+<rect x="950" y="165" width="700" height="324" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1300.0" y="200" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">Seat</text>
+<text x="1300.0" y="232" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">座位</text>
+<path d="M950,249 L1650,249" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="972" y="284" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="972" y="318" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- seatNo: String</text>
+<text x="972" y="352" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- attributes: String</text>
+<text x="972" y="386" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+<path d="M950,408 L1650,408" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="972" y="432" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ isEnabled(): Boolean</text>
+<text x="972" y="466" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ changeStatus(status: String): void</text>
+</g>
+<g data-class="User">
+<rect x="1840" y="165" width="700" height="358" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="2190.0" y="200" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">User</text>
+<text x="2190.0" y="232" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">用户</text>
+<path d="M1840,249 L2540,249" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1862" y="284" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="1862" y="318" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- account: String</text>
+<text x="1862" y="352" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- passwordHash: String</text>
+<text x="1862" y="386" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- role: String</text>
+<text x="1862" y="420" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+<path d="M1840,442 L2540,442" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1862" y="466" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ isActive(): Boolean</text>
+<text x="1862" y="500" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ hasRole(role: String): Boolean</text>
+</g>
+<g data-class="OpeningRule">
+<rect x="60" y="800" width="700" height="392" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="410.0" y="835" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">OpeningRule</text>
+<text x="410.0" y="867" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">开放规则</text>
+<path d="M60,884 L760,884" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="82" y="919" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="82" y="953" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- weekday: Integer</text>
+<text x="82" y="987" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- startTime: LocalTime</text>
+<text x="82" y="1021" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- endTime: LocalTime</text>
+<text x="82" y="1055" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- effectiveFrom: LocalDate</text>
+<text x="82" y="1089" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- effectiveTo: LocalDate</text>
+<path d="M60,1111 L760,1111" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="82" y="1135" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ appliesOn(date: LocalDate): Boolean</text>
+<text x="82" y="1169" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ covers(start: LocalTime, end: LocalTime): Boolean</text>
+</g>
+<g data-class="Reservation">
+<rect x="950" y="800" width="700" height="562" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1300.0" y="835" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">Reservation</text>
+<text x="1300.0" y="867" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">预约</text>
+<path d="M950,884 L1650,884" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="972" y="919" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="972" y="953" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- reservationNo: String</text>
+<text x="972" y="987" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- startAt: LocalDateTime</text>
+<text x="972" y="1021" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- endAt: LocalDateTime</text>
+<text x="972" y="1055" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+<path d="M950,1077 L1650,1077" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="972" y="1101" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ overlaps(start: LocalDateTime,</text>
+<text x="1000" y="1135" font-size="25" text-anchor="start" fill="#193747" font-weight="400">end: LocalDateTime): Boolean</text>
+<text x="972" y="1169" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ canCancel(now: LocalDateTime): Boolean</text>
+<text x="972" y="1203" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ cancel(now: LocalDateTime): void</text>
+<text x="972" y="1237" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ canCheckIn(now: LocalDateTime): Boolean</text>
+<text x="972" y="1271" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ startUse(now: LocalDateTime): void</text>
+<text x="972" y="1305" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ complete(): void</text>
+<text x="972" y="1339" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ markNoShow(now: LocalDateTime): void</text>
+</g>
+<g data-class="CheckIn">
+<rect x="60" y="1640" width="700" height="358" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="410.0" y="1675" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">CheckIn</text>
+<text x="410.0" y="1707" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">签到记录</text>
+<path d="M60,1724 L760,1724" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="82" y="1759" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="82" y="1793" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- checkedInAt: LocalDateTime</text>
+<text x="82" y="1827" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- checkedOutAt: LocalDateTime [0..1]</text>
+<text x="82" y="1861" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- method: String</text>
+<text x="82" y="1895" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- operatorId: Long [0..1]</text>
+<path d="M60,1917 L760,1917" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="82" y="1941" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ checkOut(at: LocalDateTime): void</text>
+<text x="82" y="1975" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ isCheckedOut(): Boolean</text>
+</g>
+<g data-class="Violation">
+<rect x="950" y="1640" width="700" height="392" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1300.0" y="1675" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">Violation</text>
+<text x="1300.0" y="1707" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">违约记录</text>
+<path d="M950,1724 L1650,1724" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="972" y="1759" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="972" y="1793" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- occurredAt: LocalDateTime</text>
+<text x="972" y="1827" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+<text x="972" y="1861" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- appealText: String [0..1]</text>
+<path d="M950,1883 L1650,1883" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="972" y="1907" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ submitAppeal(text: String): void</text>
+<text x="972" y="1941" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ review(decision: String, reason: String,</text>
+<text x="1000" y="1975" font-size="25" text-anchor="start" fill="#193747" font-weight="400">operatorId: Long, at: LocalDateTime): ViolationEvent</text>
+<text x="972" y="2009" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ isEffective(): Boolean</text>
+</g>
+<g data-class="ViolationEvent">
+<rect x="1840" y="1640" width="700" height="426" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="2190.0" y="1675" font-size="31" text-anchor="middle" fill="#193747" font-weight="600">ViolationEvent</text>
+<text x="2190.0" y="1707" font-size="23" text-anchor="middle" fill="#52727e" font-weight="400">违约处理事件</text>
+<path d="M1840,1724 L2540,1724" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1862" y="1759" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="1862" y="1793" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- action: String</text>
+<text x="1862" y="1827" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- operatorId: Long</text>
+<text x="1862" y="1861" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- reason: String</text>
+<text x="1862" y="1895" font-size="25" text-anchor="start" fill="#193747" font-weight="400">- createdAt: LocalDateTime</text>
+<path d="M1840,1917 L2540,1917" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1862" y="1941" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ getAction(): String</text>
+<text x="1862" y="1975" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ getOperatorId(): Long</text>
+<text x="1862" y="2009" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ getReason(): String</text>
+<text x="1862" y="2043" font-size="25" text-anchor="start" fill="#193747" font-weight="400">+ getCreatedAt(): LocalDateTime</text>
+</g>
+<path d="M760,325 L950,325" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="779" y="308" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="883" y="308" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="823.0" y="335" width="64" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="855" y="360" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">包含</text>
+<path d="M410,489 L410,800" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="429" y="524" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="429" y="779" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="433.0" y="661" width="64" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="465" y="686" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">配置</text>
+<path d="M1300,489 L1300,800" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1319" y="524" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1319" y="779" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="1330.0" y="661" width="110" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1385" y="686" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">历史预约</text>
+<path d="M2190,523 L2190,960 L1650,960" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="2209" y="558" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1670" y="940" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="1898.0" y="915" width="64" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1930" y="940" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">发起</text>
+<path d="M950,1130 L855,1130 L855,1520 L410,1520 L410,1640" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="916" y="1111" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="428" y="1618" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..1</text>
+<rect x="565.0" y="1475" width="110" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="620" y="1500" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">签到记录</text>
+<path d="M1300,1362 L1300,1640" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1318" y="1397" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1318" y="1618" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..1</text>
+<rect x="1330.0" y="1530" width="110" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1385" y="1555" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">违约事项</text>
+<path d="M1650,1855 L1840,1855" fill="none" stroke="#526777" stroke-width="2.5"/>
+<text x="1668" y="1838" font-size="25" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1775" y="1838" font-size="25" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="1690.0" y="1868" width="110" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1745" y="1893" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">处理历史</text>
+<g data-note="constraints">
+<path d="M1840 1080 H2512 L2540 1108 V1460 H1840 Z M2512 1080 V1108 H2540" fill="#edf4f6" stroke="#b8cbd1" stroke-width="2"/>
+<path d="M1650,1200 L1740,1200 L1740,1240 L1840,1240" fill="none" stroke="#526777" stroke-width="2.5" stroke-dasharray="8 6"/>
+<text x="1865" y="1121" font-size="28" text-anchor="start" fill="#193747" font-weight="600">业务约束</text>
+<text x="1865" y="1166" font-size="24" text-anchor="start" fill="#193747" font-weight="400">{ startAt &lt; endAt }</text>
+<text x="1865" y="1205" font-size="24" text-anchor="start" fill="#193747" font-weight="400">取消：待签到，且开始前严格大于30分钟。</text>
+<text x="1865" y="1244" font-size="24" text-anchor="start" fill="#193747" font-weight="400">签到窗口：[开始，开始＋15分钟)。</text>
+<text x="1865" y="1283" font-size="24" text-anchor="start" fill="#193747" font-weight="400">预约最多一条签到记录和一条违约记录。</text>
+<text x="1865" y="1322" font-size="24" text-anchor="start" fill="#193747" font-weight="400">复核不恢复预约终态；处理历史保留。</text>
+<text x="1865" y="1361" font-size="24" text-anchor="start" fill="#193747" font-weight="400">事件只提供读取操作，不提供历史修改操作。</text>
+<text x="1865" y="1400" font-size="24" text-anchor="start" fill="#193747" font-weight="400">对象状态变更仍须经过权限与事务校验。</text>
+</g>
+<text x="50" y="2203" font-size="25" text-anchor="start" fill="#193747" font-weight="400">− 私有属性；+ 公开操作；操作格式：名称(参数名: 类型): 返回类型。实线表示普通关联，两端标明多重性。</text>
+<text x="50" y="2247" font-size="25" text-anchor="start" fill="#526777" font-weight="400">类型采用 Java 表达；[0..1] 表示可缺省。新增操作为设计补充；跨对象校验、锁与持久化事务仍由业务处理协调。</text>
+<text x="50" y="2291" font-size="25" text-anchor="start" fill="#526777" font-weight="400">仅展示核心属性、操作与关联；省略辅助实体和部分外键。座位及自习室的启用状态不等同于时段空闲。</text>
+</svg>

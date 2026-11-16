@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2800" height="1780" viewBox="0 0 2800 1780" role="img" aria-labelledby="diagram-title">
+<title id="diagram-title">03  服务协作类图 · 操作签名与使用依赖</title>
+<defs><marker id="dependency" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#526777" stroke-width="2"/></marker></defs>
+<style>text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}</style>
+<rect x="0" y="0" width="2800" height="1780" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="45" y="56" font-size="36" text-anchor="start" fill="#193747" font-weight="600">03  服务协作类图 · 操作签名与使用依赖</text>
+<text x="45" y="99" font-size="23" text-anchor="start" fill="#526777" font-weight="400">沿用原服务职责与已有方法名；补充协作所需操作、参数类型和返回类型。类框省略属性分区，展示公开操作。</text>
+<g data-class="RoomService">
+<rect x="60" y="180" width="720" height="310" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="420.0" y="215" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">RoomService</text>
+<text x="420.0" y="245" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">场地与座位服务</text>
+<path d="M60,262 L780,262" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="295" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ getSeat(seatId: Long): Seat [0..1]</text>
+<text x="79" y="329" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ getRules(seatId: Long): OpeningRule [0..*]</text>
+<text x="79" y="363" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ updateRoom(change: RoomChange): StudyRoom</text>
+<text x="79" y="397" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ updateSeat(change: SeatChange): Seat</text>
+<text x="79" y="431" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ setOpeningRules(change: OpeningRuleChange): void</text>
+<text x="79" y="465" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ setCheckInCode(change: CheckInCodeChange): void</text>
+</g>
+<g data-class="ReservationService">
+<rect x="1030" y="180" width="760" height="344" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1410.0" y="215" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">ReservationService</text>
+<text x="1410.0" y="245" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">预约服务</text>
+<path d="M1030,262 L1790,262" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1049" y="295" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ create(request: ReservationRequest): Reservation</text>
+<text x="1049" y="329" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ cancel(id: Long): Reservation</text>
+<text x="1049" y="363" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ findAvailable(query: AvailabilityQuery): Seat [0..*]</text>
+<text x="1049" y="397" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ getById(id: Long): Reservation [0..1]</text>
+<text x="1049" y="431" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ findOverlapping(query: ReservationQuery): Reservation [0..*]</text>
+<text x="1049" y="465" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ findExpired(deadline: LocalDateTime): Reservation [0..*]</text>
+<text x="1049" y="499" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ updateStatus(change: ReservationStateChange): Boolean</text>
+</g>
+<g data-class="CheckInService">
+<rect x="2020" y="180" width="720" height="242" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="2380.0" y="215" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">CheckInService</text>
+<text x="2380.0" y="245" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">履约服务</text>
+<path d="M2020,262 L2740,262" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="2039" y="295" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ checkIn(id: Long, code: String): CheckIn</text>
+<text x="2039" y="329" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ checkOut(id: Long): CheckIn</text>
+<text x="2039" y="363" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ confirmManually(id: Long, reason: String): CheckIn</text>
+<text x="2039" y="397" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ expireDue(): Integer</text>
+</g>
+<g data-class="StatisticsService">
+<rect x="60" y="990" width="720" height="174" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="420.0" y="1025" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">StatisticsService</text>
+<text x="420.0" y="1055" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">统计服务 · 只读</text>
+<path d="M60,1072 L780,1072" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="1105" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ summarize(query: StatisticsQuery): StatisticsResult</text>
+<text x="79" y="1139" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ exportCsv(query: StatisticsQuery): byte[]</text>
+</g>
+<g data-class="ViolationService">
+<rect x="1030" y="990" width="760" height="276" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1410.0" y="1025" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">ViolationService</text>
+<text x="1410.0" y="1055" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">违约与申诉服务</text>
+<path d="M1030,1072 L1790,1072" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1049" y="1105" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ createCandidate(reservationId: Long): Violation</text>
+<text x="1049" y="1139" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ appeal(id: Long, text: String): Violation</text>
+<text x="1049" y="1173" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ review(id: Long, decision: ReviewDecision,</text>
+<text x="1073" y="1207" font-size="23" text-anchor="start" fill="#193747" font-weight="400">reason: String): Violation</text>
+<text x="1049" y="1241" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ canReserve(userId: Long): Boolean</text>
+</g>
+<g data-class="AuditService">
+<rect x="2020" y="990" width="720" height="140" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="2380.0" y="1025" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">AuditService</text>
+<text x="2380.0" y="1055" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">审计服务</text>
+<path d="M2020,1072 L2740,1072" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="2039" y="1105" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ record(entry: AuditEntry): void</text>
+</g>
+<path d="M1030,285 L780,285" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="842.135" y="234" width="125.72999999999999" height="31" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="905" y="255" font-size="21" text-anchor="middle" fill="#193747" font-weight="400">getSeat()</text>
+<rect x="836.15" y="295" width="137.7" height="31" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="905" y="316" font-size="21" text-anchor="middle" fill="#193747" font-weight="400">getRules()</text>
+<path d="M780,435 L1030,435" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="799.1" y="382" width="211.80000000000004" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="905" y="402" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">findOverlapping()</text>
+<path d="M2020,340 L1790,340" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="1844.7" y="261" width="120.6" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="281" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">getById()</text>
+<rect x="1821.9" y="292" width="166.20000000000002" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="312" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">findExpired()</text>
+<rect x="1816.2" y="359" width="177.60000000000002" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="379" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">updateStatus()</text>
+<path d="M1410,524 L1410,990" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="1432" y="721" width="182.16000000000005" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1440" y="745" font-size="24" text-anchor="start" fill="#193747" font-weight="400">canReserve()</text>
+<path d="M2200,422 L2200,700 L1670,700 L1670,990" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="1694.565" y="651" width="240.87000000000006" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1815" y="674" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">createCandidate()</text>
+<path d="M1790,1180 L2020,1180 L2020,1100" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="1843.56" y="1191" width="122.88" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="1214" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">record()</text>
+<path d="M2530,422 L2530,990" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="2552" y="710" width="122.88" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="2560" y="733" font-size="23" text-anchor="start" fill="#193747" font-weight="400">record()</text>
+<text x="2560" y="768" font-size="21" text-anchor="start" fill="#526777" font-weight="400">人工确认</text>
+<path d="M210,490 L210,590 L30,590 L30,1390 L2350,1390 L2350,1130" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency)"/>
+<rect x="361.56499999999994" y="1345" width="516.8700000000001" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="620" y="1368" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">record()：场地 / 座位 / 规则 / 签到码维护</text>
+<rect x="60" y="690" width="850" height="190" fill="#edf4f6" stroke="#b8cbd1" stroke-width="2"/>
+<text x="82" y="730" font-size="25" text-anchor="start" fill="#193747" font-weight="600">表示范围</text>
+<text x="82" y="771" font-size="23" text-anchor="start" fill="#193747" font-weight="400">虚线开箭头：调用方使用被依赖类的操作。</text>
+<text x="82" y="810" font-size="23" text-anchor="start" fill="#193747" font-weight="400">接口契约与组件图对应，具体映射见《类图修订说明》。</text>
+<text x="82" y="849" font-size="23" text-anchor="start" fill="#193747" font-weight="400">各服务依赖相应 Mapper；此图省略共同持久化依赖。</text>
+<text x="80" y="1240" font-size="23" text-anchor="start" fill="#526777" font-weight="400">统计通过 Mapper 只读汇总，不新增服务间调用。</text>
+<rect x="60" y="1460" width="2680" height="265" fill="#fff" stroke="#b8cbd1" stroke-width="2"/>
+<text x="85" y="1502" font-size="26" text-anchor="start" fill="#193747" font-weight="600">读图与约束</text>
+<text x="85" y="1545" font-size="24" text-anchor="start" fill="#193747" font-weight="400">+ 表示公开操作；格式：操作名(参数名: 类型): 返回类型；返回值 [0..1] / [0..*] 为 UML 多重性。</text>
+<text x="85" y="1587" font-size="24" text-anchor="start" fill="#193747" font-weight="400">所有操作类型及新增方法属于本次设计补充；请求 / 结果类型、接口映射与异常约定见《类图修订说明》。</text>
+<text x="85" y="1629" font-size="24" text-anchor="start" fill="#193747" font-weight="400">updateStatus 必须校验允许的状态迁移，并按预期状态条件更新；false 表示未更新，调用方需处理冲突。</text>
+<text x="85" y="1671" font-size="24" text-anchor="start" fill="#193747" font-weight="400">身份与操作人来自可信认证上下文；读改预约、写签到及生成违约候选沿用设计文档的锁顺序和事务边界。</text>
+</svg>

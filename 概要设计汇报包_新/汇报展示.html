@@ -1,0 +1,762 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>校园自习室预约管理系统概要设计汇报</title><style>*{box-sizing:border-box}body{margin:0;background:#e7eef2;color:#193747;font-family:"Microsoft YaHei",sans-serif}nav{height:58px;display:flex;gap:14px;align-items:center;padding:10px 24px;background:white}button,a{font:inherit;color:#135e55}button{border:1px solid #93b8ad;background:white;padding:7px 16px;border-radius:5px;cursor:pointer}main{height:calc(100vh - 58px)}section{display:none;width:100%;height:100%;align-items:center;justify-content:center}section.active{display:flex}svg{width:100%;height:100%;object-fit:contain}h1{font-size:64px}h2{font-size:30px}.cover{padding:50px}.cover p{font-size:22px;line-height:1.8}#notes{display:none;background:white;padding:25px;max-width:1000px;margin:auto}pre{white-space:pre-wrap;font:18px/1.8 "Microsoft YaHei",sans-serif}body.reading main{display:none}body.reading #notes{display:block}@media print{nav,#notes{display:none!important}main{height:auto}section{display:flex;height:95vh;break-after:page}svg{max-height:95vh}}</style><nav><button id="prev">上一页</button><span id="counter"></span><button id="next">下一页</button><button id="toggle">讲稿与备答</button><span>← → 翻页　F11 浏览器全屏</span></nav><main><section class="active"><div class="cover"><p>校园自习室预约管理系统</p><h1>概要设计汇报</h1><h2>组件图 · 核心类图 · 服务协作</h2><p>按项目系统设计方案 V1.0 修订　|　2026.11.16</p><p>需求与设计结果已有文档依据；界面原型用于展示交互。</p></div></section><section data-component-view="overview"><svg data-diagram="d1" xmlns="http://www.w3.org/2000/svg" width="2400" height="1200" viewBox="0 0 2400 1200" role="img" aria-labelledby="title-overview-d1 desc-overview-d1">
+<title id="title-overview-d1">校园自习室预约管理系统 UML 组件图</title><desc id="desc-overview-d1">总体接口与数据访问视图，以及同一组组件的关键业务协作视图。圆球表示提供接口，虚线开箭头表示使用依赖。</desc>
+<defs><marker id="use-arrow-overview-d1" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#526777" stroke-width="2"/></marker></defs>
+<style>svg[data-diagram="d1"] text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}</style>
+<g id="overview-overview-d1">
+<rect x="0" y="0" width="2400" height="1200" rx="0" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="48" y="54" font-size="35" text-anchor="start" fill="#193747" font-weight="600">01A  UML 组件图 · 总体接口与数据访问</text>
+<text x="48" y="93" font-size="22" text-anchor="start" fill="#526777" font-weight="400">保留原有组件划分；API 调用具体业务接口，业务组件通过对应数据访问接口完成持久化。</text>
+<rect x="60" y="145" width="400" height="150" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="78" y="172" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="78" y="205" font-size="28" text-anchor="start" fill="#193747" font-weight="600">学生端 / 管理端</text>
+<rect x="413" y="161" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="406" y="166" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="406" y="179" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M60,222 L460,222" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="78" y="253" font-size="22" text-anchor="start" fill="#193747" font-weight="400">Vue 3 / TypeScript</text>
+<text x="78" y="281" font-size="22" text-anchor="start" fill="#193747" font-weight="400">查询、预约、履约与管理操作</text>
+<rect x="970" y="145" width="460" height="150" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="988" y="172" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="988" y="205" font-size="28" text-anchor="start" fill="#193747" font-weight="600">API 控制器</text>
+<rect x="1383" y="161" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1376" y="166" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1376" y="179" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M970,222 L1430,222" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="988" y="253" font-size="22" text-anchor="start" fill="#193747" font-weight="400">Spring MVC · 校验与服务调用</text>
+<text x="988" y="281" font-size="22" text-anchor="start" fill="#193747" font-weight="400">受保护操作先认证，再校验归属</text>
+<rect x="1840" y="145" width="490" height="150" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1858" y="172" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1858" y="205" font-size="28" text-anchor="start" fill="#193747" font-weight="600">身份与权限</text>
+<rect x="2283" y="161" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2276" y="166" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2276" y="179" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M1840,222 L2330,222" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1858" y="253" font-size="22" text-anchor="start" fill="#193747" font-weight="400">Spring Security / JWT</text>
+<text x="1858" y="281" font-size="22" text-anchor="start" fill="#193747" font-weight="400">登录、令牌验证、角色授权</text>
+<path d="M970,210 L720,210" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="720" cy="210" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="720" y="188" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">REST API /api/v1</text>
+<path d="M460,210 L709,210" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<text x="550" y="244" font-size="20" text-anchor="start" fill="#193747" font-weight="400">HTTPS / JSON</text>
+<path d="M1840,210 L1640,210" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1640" cy="210" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1640" y="188" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">IIdentity</text>
+<path d="M1430,210 L1629,210" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<text x="1530" y="244" font-size="20" text-anchor="start" fill="#193747" font-weight="400">认证与授权</text>
+<rect x="60" y="490" width="330" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="78" y="517" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="78" y="550" font-size="28" text-anchor="start" fill="#193747" font-weight="600">场地与座位</text>
+<rect x="343" y="506" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="336" y="511" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="336" y="524" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M60,567 L390,567" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="78" y="598" font-size="22" text-anchor="start" fill="#193747" font-weight="400">场地、座位、规则与签到码</text>
+<text x="78" y="626" font-size="22" text-anchor="start" fill="#193747" font-weight="400">提供查询与维护</text>
+<path d="M225,490 L225,440" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="225" cy="440" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="247" y="448" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IRoom</text>
+<path d="M1010,295 L1010,320 L225,320 L225,429" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<rect x="450" y="490" width="330" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="468" y="517" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="468" y="550" font-size="28" text-anchor="start" fill="#193747" font-weight="600">预约</text>
+<rect x="733" y="506" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="726" y="511" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="726" y="524" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M450,567 L780,567" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="468" y="598" font-size="22" text-anchor="start" fill="#193747" font-weight="400">预约资格与时段冲突检查</text>
+<text x="468" y="626" font-size="22" text-anchor="start" fill="#193747" font-weight="400">创建、取消、可用性查询</text>
+<path d="M615,490 L615,440" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="615" cy="440" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="637" y="448" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IReservation</text>
+<path d="M1090,295 L1090,345 L615,345 L615,429" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<rect x="840" y="490" width="330" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="858" y="517" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="858" y="550" font-size="28" text-anchor="start" fill="#193747" font-weight="600">履约</text>
+<rect x="1123" y="506" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1116" y="511" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1116" y="524" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M840,567 L1170,567" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="858" y="598" font-size="22" text-anchor="start" fill="#193747" font-weight="400">签到、签退、人工确认</text>
+<text x="858" y="626" font-size="22" text-anchor="start" fill="#193747" font-weight="400">超时处理与违约候选</text>
+<path d="M1005,490 L1005,440" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1005" cy="440" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1027" y="448" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">ICheckIn</text>
+<path d="M1200,295 L1200,370 L1005,370 L1005,429" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<rect x="1230" y="490" width="330" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1248" y="517" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1248" y="550" font-size="28" text-anchor="start" fill="#193747" font-weight="600">违约与申诉</text>
+<rect x="1513" y="506" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1506" y="511" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1506" y="524" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M1230,567 L1560,567" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1248" y="598" font-size="22" text-anchor="start" fill="#193747" font-weight="400">候选、申诉与复核</text>
+<text x="1248" y="626" font-size="22" text-anchor="start" fill="#193747" font-weight="400">计算预约资格</text>
+<path d="M1395,490 L1395,440" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1395" cy="440" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1417" y="448" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IViolation</text>
+<path d="M1310,295 L1310,345 L1395,345 L1395,429" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<rect x="1620" y="490" width="330" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1638" y="517" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1638" y="550" font-size="28" text-anchor="start" fill="#193747" font-weight="600">统计</text>
+<rect x="1903" y="506" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1896" y="511" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1896" y="524" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M1620,567 L1950,567" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1638" y="598" font-size="22" text-anchor="start" fill="#193747" font-weight="400">只读汇总与导出</text>
+<text x="1638" y="626" font-size="22" text-anchor="start" fill="#193747" font-weight="400">预约、签到和场地数据</text>
+<path d="M1785,490 L1785,440" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1785" cy="440" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1807" y="448" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IStatistics</text>
+<path d="M1390,295 L1390,320 L1785,320 L1785,429" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<rect x="2010" y="490" width="330" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="2028" y="517" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="2028" y="550" font-size="28" text-anchor="start" fill="#193747" font-weight="600">审计</text>
+<rect x="2293" y="506" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2286" y="511" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2286" y="524" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M2010,567 L2340,567" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="2028" y="598" font-size="22" text-anchor="start" fill="#193747" font-weight="400">记录关键管理操作</text>
+<text x="2028" y="626" font-size="22" text-anchor="start" fill="#193747" font-weight="400">操作人、对象、时间与结果</text>
+<path d="M2175,490 L2175,440" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="2175" cy="440" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="2197" y="448" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IAudit</text>
+<text x="2175" y="385" font-size="19" text-anchor="middle" fill="#526777" font-weight="400">内部审计接口 · 见 01B</text>
+<rect x="60" y="815" width="2270" height="125" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="78" y="842" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="78" y="875" font-size="28" text-anchor="start" fill="#193747" font-weight="600">Mapper 数据访问组件</text>
+<rect x="2283" y="831" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2276" y="836" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2276" y="849" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M60,892 L2330,892" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="78" y="923" font-size="22" text-anchor="start" fill="#193747" font-weight="400">MyBatis-Plus · 按职责封装查询、条件更新与锁定查询；事务边界由业务服务控制</text>
+<path d="M225,815 L225,760" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="225" cy="760" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="245" y="768" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">场地数据访问</text>
+<path d="M225,650 L225,749" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<path d="M615,815 L615,760" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="615" cy="760" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="635" y="768" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">预约数据访问</text>
+<path d="M615,650 L615,749" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<path d="M1005,815 L1005,760" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1005" cy="760" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1025" y="768" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">履约数据访问</text>
+<path d="M1005,650 L1005,749" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<path d="M1395,815 L1395,760" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1395" cy="760" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1415" y="768" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">违约数据访问</text>
+<path d="M1395,650 L1395,749" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<path d="M1785,815 L1785,760" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1785" cy="760" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1805" y="768" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">统计只读查询</text>
+<path d="M1785,650 L1785,749" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<path d="M2175,815 L2175,760" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="2175" cy="760" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="2195" y="768" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">审计日志写入</text>
+<path d="M2175,650 L2175,749" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<path d="M2330,875 L2370,875" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="2370" cy="875" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="2370" y="875" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600"></text>
+<path d="M2330,240 L2380,240 L2380,705 L2370,705 L2370,864" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<text x="2335" y="737" font-size="19" text-anchor="end" fill="#12675d" font-weight="400">用户数据</text>
+<rect x="885" y="1040" width="630" height="115" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="903" y="1067" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="903" y="1100" font-size="28" text-anchor="start" fill="#193747" font-weight="600">MySQL 8 数据库</text>
+<rect x="1468" y="1056" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1461" y="1061" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1461" y="1074" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M885,1117 L1515,1117" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="903" y="1148" font-size="22" text-anchor="start" fill="#193747" font-weight="400">保存业务表、账号数据和审计记录</text>
+<path d="M1200,1040 L1200,993" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1200" cy="993" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1232" y="1000" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">SQL / JDBC</text>
+<path d="M1200,940 L1200,982" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-overview-d1)"/>
+<text x="60" y="1000" font-size="23" text-anchor="start" fill="#193747" font-weight="600">逻辑组件视图</text>
+<text x="60" y="1036" font-size="22" text-anchor="start" fill="#193747" font-weight="400">业务组件可在同一后端应用中部署。</text>
+<text x="60" y="1071" font-size="22" text-anchor="start" fill="#193747" font-weight="400">Nginx、节点与网络拓扑留在部署视图中。</text>
+<text x="60" y="1145" font-size="22" text-anchor="start" fill="#526777" font-weight="400">依赖方向：使用方 → 提供接口；组件间的业务协作在 01B 展开。</text>
+</g></svg></section><section data-component-view="collaboration"><svg data-diagram="d2" xmlns="http://www.w3.org/2000/svg" width="2400" height="1240" viewBox="0 1200 2400 1240" role="img" aria-labelledby="title-collaboration-d2 desc-collaboration-d2">
+<title id="title-collaboration-d2">校园自习室预约管理系统 UML 组件图</title><desc id="desc-collaboration-d2">总体接口与数据访问视图，以及同一组组件的关键业务协作视图。圆球表示提供接口，虚线开箭头表示使用依赖。</desc>
+<defs><marker id="use-arrow-collaboration-d2" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#526777" stroke-width="2"/></marker></defs>
+<style>svg[data-diagram="d2"] text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}</style>
+<g id="collaboration-collaboration-d2">
+<rect x="0" y="1200" width="2400" height="1240" rx="0" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="48" y="1254" font-size="35" text-anchor="start" fill="#193747" font-weight="600">01B  UML 组件图 · 关键业务协作</text>
+<text x="48" y="1293" font-size="22" text-anchor="start" fill="#526777" font-weight="400">与 01A 中同名的框是同一组件；此处展开业务依赖及典型管理操作的审计依赖。</text>
+<rect x="80" y="1420" width="420" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="98" y="1447" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="98" y="1480" font-size="28" text-anchor="start" fill="#193747" font-weight="600">场地与座位</text>
+<rect x="453" y="1436" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="446" y="1441" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="446" y="1454" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M80,1497 L500,1497" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="98" y="1528" font-size="22" text-anchor="start" fill="#193747" font-weight="400">提供场地与开放规则</text>
+<text x="98" y="1556" font-size="22" text-anchor="start" fill="#193747" font-weight="400">维护时检查已有预约</text>
+<rect x="990" y="1420" width="420" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1008" y="1447" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1008" y="1480" font-size="28" text-anchor="start" fill="#193747" font-weight="600">预约</text>
+<rect x="1363" y="1436" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1356" y="1441" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1356" y="1454" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M990,1497 L1410,1497" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1008" y="1528" font-size="22" text-anchor="start" fill="#193747" font-weight="400">创建、取消及预约查询</text>
+<text x="1008" y="1556" font-size="22" text-anchor="start" fill="#193747" font-weight="400">提供预约状态读取与更新能力</text>
+<rect x="1900" y="1420" width="420" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1918" y="1447" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1918" y="1480" font-size="28" text-anchor="start" fill="#193747" font-weight="600">履约</text>
+<rect x="2273" y="1436" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2266" y="1441" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2266" y="1454" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M1900,1497 L2320,1497" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1918" y="1528" font-size="22" text-anchor="start" fill="#193747" font-weight="400">签到、签退、人工确认</text>
+<text x="1918" y="1556" font-size="22" text-anchor="start" fill="#193747" font-weight="400">超时处理与违约候选</text>
+<rect x="80" y="1880" width="420" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="98" y="1907" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="98" y="1940" font-size="28" text-anchor="start" fill="#193747" font-weight="600">统计</text>
+<rect x="453" y="1896" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="446" y="1901" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="446" y="1914" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M80,1957 L500,1957" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="98" y="1988" font-size="22" text-anchor="start" fill="#193747" font-weight="400">通过统计只读查询接口访问数据</text>
+<text x="98" y="2016" font-size="22" text-anchor="start" fill="#193747" font-weight="400">本视图不引入其他服务调用</text>
+<rect x="990" y="1880" width="420" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1008" y="1907" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1008" y="1940" font-size="28" text-anchor="start" fill="#193747" font-weight="600">违约与申诉</text>
+<rect x="1363" y="1896" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1356" y="1901" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="1356" y="1914" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M990,1957 L1410,1957" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1008" y="1988" font-size="22" text-anchor="start" fill="#193747" font-weight="400">资格判断、候选生成</text>
+<text x="1008" y="2016" font-size="22" text-anchor="start" fill="#193747" font-weight="400">申诉与管理员复核</text>
+<rect x="1900" y="1880" width="420" height="160" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<text x="1918" y="1907" font-size="18" text-anchor="start" fill="#52727e" font-weight="400">«component»</text>
+<text x="1918" y="1940" font-size="28" text-anchor="start" fill="#193747" font-weight="600">审计</text>
+<rect x="2273" y="1896" width="25" height="31" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2266" y="1901" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<rect x="2266" y="1914" width="12" height="8" rx="0" fill="#fff" stroke="#16776b" stroke-width="2"/>
+<path d="M1900,1957 L2320,1957" fill="none" stroke="#8bb5ad" stroke-width="2.3"/>
+<text x="1918" y="1988" font-size="22" text-anchor="start" fill="#193747" font-weight="400">记录关键管理操作</text>
+<text x="1918" y="2016" font-size="22" text-anchor="start" fill="#193747" font-weight="400">保存操作人、原因、时间和结果</text>
+<path d="M500,1470 L690,1470" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="690" cy="1470" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="690" y="1445" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">IRoomRules</text>
+<path d="M990,1470 L701,1470" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="830" y="1450" font-size="19" text-anchor="middle" fill="#193747" font-weight="400">场地与规则查询</text>
+<path d="M990,1540 L810,1540" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="810" cy="1540" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="810" y="1580" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">IReservationQuery</text>
+<path d="M500,1540 L799,1540" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="645" y="1522" font-size="19" text-anchor="middle" fill="#193747" font-weight="400">检查已有预约</text>
+<path d="M1410,1485 L1640,1485" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1640" cy="1485" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1640" y="1450" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">IReservationState</text>
+<path d="M1900,1485 L1651,1485" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="1700" y="1523" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">读取 / 条件更新预约</text>
+<path d="M1200,1880 L1200,1770" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1200" cy="1770" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1230" y="1780" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IEligibility</text>
+<path d="M1200,1580 L1200,1759" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="1230" y="1664" font-size="22" text-anchor="start" fill="#193747" font-weight="400">预约资格判断</text>
+<text x="1230" y="1697" font-size="20" text-anchor="start" fill="#526777" font-weight="400">canReserve(userId)</text>
+<path d="M1410,1940 L1650,1940" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1650" cy="1940" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1668" y="1980" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">IViolationCandidate</text>
+<path d="M2070,1580 L2070,1670 L1650,1670 L1650,1929" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="1680" y="1750" font-size="22" text-anchor="start" fill="#193747" font-weight="400">生成违约候选</text>
+<text x="1680" y="1782" font-size="20" text-anchor="start" fill="#526777" font-weight="400">createCandidate(...)</text>
+<path d="M2110,1880 L2110,1790" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="2110" cy="1790" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="2140" y="1798" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IAudit</text>
+<path d="M2240,1580 L2240,1720 L2110,1720 L2110,1779" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="2270" y="1670" font-size="20" text-anchor="end" fill="#193747" font-weight="400">人工确认</text>
+<path d="M1900,2000 L1780,2000" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="1780" cy="2000" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="1780" y="2036" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600">IAudit</text>
+<path d="M1410,2015 L1700,2015 L1700,2000 L1769,2000" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="1530" y="2052" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">违约复核</text>
+<path d="M2110,2040 L2110,2160" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="2110" cy="2160" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="2140" y="2168" font-size="22" text-anchor="start" fill="#12675d" font-weight="600">IAudit</text>
+<path d="M250,1580 L250,1655 L40,1655 L40,2230 L2110,2230 L2110,2171" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="600" y="2212" font-size="22" text-anchor="start" fill="#193747" font-weight="400">场地 / 座位 / 开放规则 / 签到码维护 → 审计记录</text>
+<rect x="80" y="1700" width="810" height="120" rx="4" fill="#edf4f6" stroke="#b8cbd1" stroke-width="2"/>
+<text x="100" y="1734" font-size="23" text-anchor="start" fill="#193747" font-weight="600">接口粒度</text>
+<text x="100" y="1769" font-size="21" text-anchor="start" fill="#193747" font-weight="400">IRoomRules 是 IRoom 职责的细分；预约与违约接口同理。</text>
+<text x="100" y="1800" font-size="21" text-anchor="start" fill="#193747" font-weight="400">这些名称是本次补充的逻辑契约，具体签名由详细设计确定。</text>
+<path d="M65,2310 L115,2310" fill="none" stroke="#16776b" stroke-width="2.3"/>
+<circle cx="115" cy="2310" r="11" fill="white" stroke="#16776b" stroke-width="2.5"/>
+<text x="115" y="2310" font-size="22" text-anchor="middle" fill="#12675d" font-weight="600"></text>
+<text x="140" y="2318" font-size="22" text-anchor="start" fill="#193747" font-weight="400">圆球＋实线：组件提供的接口</text>
+<path d="M600,2310 L710,2310" fill="none" stroke="#526777" stroke-width="2.3" stroke-dasharray="9 6" marker-end="url(#use-arrow-collaboration-d2)"/>
+<text x="735" y="2318" font-size="22" text-anchor="start" fill="#193747" font-weight="400">虚线开箭头：«use»，使用方 → 所需接口</text>
+<text x="48" y="2358" font-size="21" text-anchor="start" fill="#526777" font-weight="400">依据：系统设计方案 §2.1–2.2、§3.1–3.2、§4.3；课程第 5 章第 49–50、53–54 页。</text>
+<text x="48" y="2396" font-size="21" text-anchor="start" fill="#526777" font-weight="400">同名 IAudit 为同一提供接口的重复表示。此图表达静态依赖，不表达调用时序；定时调度调用履约接口执行超时处理。</text>
+</g></svg></section><section><svg data-diagram="d3" xmlns="http://www.w3.org/2000/svg" width="2200" height="1590" viewBox="0 0 2200 1590" role="img" aria-labelledby="diagram-title-d3">
+<title id="diagram-title-d3">02  核心类图 · 属性与关联</title>
+<defs><marker id="dependency-d3" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#526777" stroke-width="2"/></marker></defs>
+<style>svg[data-diagram="d3"] text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}</style>
+<rect x="0" y="0" width="2200" height="1590" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="45" y="56" font-size="36" text-anchor="start" fill="#193747" font-weight="600">02  核心类图 · 属性与关联</text>
+<g data-class="StudyRoom">
+<rect x="60" y="165" width="540" height="242" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="330.0" y="200" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">StudyRoom</text>
+<text x="330.0" y="230" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">自习室</text>
+<path d="M60,247 L600,247" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="280" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="79" y="314" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- buildingId: Long</text>
+<text x="79" y="348" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- name: String</text>
+<text x="79" y="382" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+</g>
+<g data-class="Seat">
+<rect x="820" y="165" width="540" height="242" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1090.0" y="200" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">Seat</text>
+<text x="1090.0" y="230" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">座位</text>
+<path d="M820,247 L1360,247" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="839" y="280" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="839" y="314" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- seatNo: String</text>
+<text x="839" y="348" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- attributes: String</text>
+<text x="839" y="382" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+</g>
+<g data-class="User">
+<rect x="1580" y="165" width="540" height="276" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1850.0" y="200" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">User</text>
+<text x="1850.0" y="230" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">用户</text>
+<path d="M1580,247 L2120,247" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1599" y="280" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="1599" y="314" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- account: String</text>
+<text x="1599" y="348" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- passwordHash: String</text>
+<text x="1599" y="382" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- role: String</text>
+<text x="1599" y="416" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+</g>
+<g data-class="OpeningRule">
+<rect x="60" y="610" width="540" height="310" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="330.0" y="645" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">OpeningRule</text>
+<text x="330.0" y="675" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">开放规则</text>
+<path d="M60,692 L600,692" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="725" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="79" y="759" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- weekday: Integer</text>
+<text x="79" y="793" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- startTime: LocalTime</text>
+<text x="79" y="827" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- endTime: LocalTime</text>
+<text x="79" y="861" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- effectiveFrom: LocalDate</text>
+<text x="79" y="895" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- effectiveTo: LocalDate</text>
+</g>
+<g data-class="Reservation">
+<rect x="820" y="610" width="540" height="276" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1090.0" y="645" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">Reservation</text>
+<text x="1090.0" y="675" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">预约</text>
+<path d="M820,692 L1360,692" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="839" y="725" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="839" y="759" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- reservationNo: String</text>
+<text x="839" y="793" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- startAt: LocalDateTime</text>
+<text x="839" y="827" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- endAt: LocalDateTime</text>
+<text x="839" y="861" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+</g>
+<g data-class="CheckIn">
+<rect x="60" y="1110" width="540" height="276" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="330.0" y="1145" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">CheckIn</text>
+<text x="330.0" y="1175" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">签到记录</text>
+<path d="M60,1192 L600,1192" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="1225" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="79" y="1259" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- checkedInAt: LocalDateTime</text>
+<text x="79" y="1293" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- checkedOutAt: LocalDateTime [0..1]</text>
+<text x="79" y="1327" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- method: String</text>
+<text x="79" y="1361" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- operatorId: Long [0..1]</text>
+</g>
+<g data-class="Violation">
+<rect x="820" y="1110" width="540" height="242" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1090.0" y="1145" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">Violation</text>
+<text x="1090.0" y="1175" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">违约记录</text>
+<path d="M820,1192 L1360,1192" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="839" y="1225" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="839" y="1259" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- occurredAt: LocalDateTime</text>
+<text x="839" y="1293" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- status: String</text>
+<text x="839" y="1327" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- appealText: String [0..1]</text>
+</g>
+<g data-class="ViolationEvent">
+<rect x="1580" y="1110" width="540" height="276" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1850.0" y="1145" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">ViolationEvent</text>
+<text x="1850.0" y="1175" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">违约处理事件</text>
+<path d="M1580,1192 L2120,1192" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1599" y="1225" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- id: Long</text>
+<text x="1599" y="1259" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- action: String</text>
+<text x="1599" y="1293" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- operatorId: Long</text>
+<text x="1599" y="1327" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- reason: String</text>
+<text x="1599" y="1361" font-size="24" text-anchor="start" fill="#193747" font-weight="400">- createdAt: LocalDateTime</text>
+</g>
+<path d="M600,295 L820,295" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="620" y="280" font-size="23" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="760" y="280" font-size="23" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="679.0" y="303" width="62" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="710" y="325" font-size="22" text-anchor="middle" fill="#193747" font-weight="400">包含</text>
+<path d="M330,407 L330,610" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="345" y="440" font-size="24" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="345" y="590" font-size="24" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="367" y="497" width="62" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="375" y="519" font-size="22" text-anchor="start" fill="#193747" font-weight="400">配置</text>
+<path d="M1090,407 L1090,610" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1107" y="440" font-size="24" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1107" y="590" font-size="24" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="1122" y="497" width="106" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1130" y="519" font-size="22" text-anchor="start" fill="#193747" font-weight="400">历史预约</text>
+<path d="M1850,441 L1850,750 L1360,750" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1867" y="474" font-size="24" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1382" y="734" font-size="24" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="1569.0" y="710" width="62" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1600" y="732" font-size="22" text-anchor="middle" fill="#193747" font-weight="400">发起</text>
+<path d="M820,810 L710,810 L710,1035 L330,1035 L330,1110" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="785" y="794" font-size="24" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="348" y="1091" font-size="24" text-anchor="start" fill="#193747" font-weight="400">0..1</text>
+<rect x="447.0" y="994" width="106" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="500" y="1016" font-size="22" text-anchor="middle" fill="#193747" font-weight="400">签到记录</text>
+<path d="M1090,886 L1090,1110" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1107" y="920" font-size="24" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1107" y="1090" font-size="24" text-anchor="start" fill="#193747" font-weight="400">0..1</text>
+<rect x="1122" y="980" width="106" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1130" y="1002" font-size="22" text-anchor="start" fill="#193747" font-weight="400">违约事项</text>
+<path d="M1360,1250 L1580,1250" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1380" y="1234" font-size="24" text-anchor="start" fill="#193747" font-weight="400">1</text>
+<text x="1520" y="1234" font-size="24" text-anchor="start" fill="#193747" font-weight="400">0..*</text>
+<rect x="1417.0" y="1262" width="106" height="32" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1470" y="1284" font-size="22" text-anchor="middle" fill="#193747" font-weight="400">处理历史</text>
+<path d="M1580 865 H2098 L2120 887 V1023 H1580 Z M2098 865 V887 H2120" fill="#edf4f6" stroke="#b8cbd1" stroke-width="2"/>
+<path d="M1360,845 L1470,845 L1470,920 L1580,920" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6"/>
+<text x="1600" y="903" font-size="25" text-anchor="start" fill="#193747" font-weight="600">约束</text>
+<text x="1600" y="940" font-size="23" text-anchor="start" fill="#193747" font-weight="400">{ startAt &lt; endAt }</text>
+<text x="1600" y="974" font-size="23" text-anchor="start" fill="#193747" font-weight="400">每个预约最多一条签到及一条违约记录。</text>
+<text x="1600" y="1008" font-size="23" text-anchor="start" fill="#193747" font-weight="400">历史多重性不表示允许有效时段重叠。</text>
+<text x="45" y="1468" font-size="23" text-anchor="start" fill="#193747" font-weight="400">实线：普通关联；1、0..1、0..*：关联端多重性；-：私有属性。未标箭头的关联不指定导航方向。</text>
+<text x="45" y="1510" font-size="23" text-anchor="start" fill="#526777" font-weight="400">采用 Java 时间类型；[0..1] 表示属性可缺省。实体操作分区省略，业务操作在服务协作类图中展开。</text>
+<text x="45" y="1552" font-size="23" text-anchor="start" fill="#526777" font-weight="400">范围：核心实体的部分属性与关联；辅助实体及部分外键省略。未假定级联删除，因此不添加组合关系。</text>
+</svg></section><section><svg data-diagram="d4" xmlns="http://www.w3.org/2000/svg" width="2800" height="1780" viewBox="0 0 2800 1780" role="img" aria-labelledby="diagram-title-d4">
+<title id="diagram-title-d4">03  服务协作类图 · 操作签名与使用依赖</title>
+<defs><marker id="dependency-d4" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#526777" stroke-width="2"/></marker></defs>
+<style>svg[data-diagram="d4"] text{font-family:"Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif}</style>
+<rect x="0" y="0" width="2800" height="1780" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="45" y="56" font-size="36" text-anchor="start" fill="#193747" font-weight="600">03  服务协作类图 · 操作签名与使用依赖</text>
+<text x="45" y="99" font-size="23" text-anchor="start" fill="#526777" font-weight="400">沿用原服务职责与已有方法名；补充协作所需操作、参数类型和返回类型。类框省略属性分区，展示公开操作。</text>
+<g data-class="RoomService">
+<rect x="60" y="180" width="720" height="310" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="420.0" y="215" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">RoomService</text>
+<text x="420.0" y="245" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">场地与座位服务</text>
+<path d="M60,262 L780,262" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="295" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ getSeat(seatId: Long): Seat [0..1]</text>
+<text x="79" y="329" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ getRules(seatId: Long): OpeningRule [0..*]</text>
+<text x="79" y="363" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ updateRoom(change: RoomChange): StudyRoom</text>
+<text x="79" y="397" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ updateSeat(change: SeatChange): Seat</text>
+<text x="79" y="431" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ setOpeningRules(change: OpeningRuleChange): void</text>
+<text x="79" y="465" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ setCheckInCode(change: CheckInCodeChange): void</text>
+</g>
+<g data-class="ReservationService">
+<rect x="1030" y="180" width="760" height="344" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1410.0" y="215" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">ReservationService</text>
+<text x="1410.0" y="245" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">预约服务</text>
+<path d="M1030,262 L1790,262" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1049" y="295" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ create(request: ReservationRequest): Reservation</text>
+<text x="1049" y="329" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ cancel(id: Long): Reservation</text>
+<text x="1049" y="363" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ findAvailable(query: AvailabilityQuery): Seat [0..*]</text>
+<text x="1049" y="397" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ getById(id: Long): Reservation [0..1]</text>
+<text x="1049" y="431" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ findOverlapping(query: ReservationQuery): Reservation [0..*]</text>
+<text x="1049" y="465" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ findExpired(deadline: LocalDateTime): Reservation [0..*]</text>
+<text x="1049" y="499" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ updateStatus(change: ReservationStateChange): Boolean</text>
+</g>
+<g data-class="CheckInService">
+<rect x="2020" y="180" width="720" height="242" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="2380.0" y="215" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">CheckInService</text>
+<text x="2380.0" y="245" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">履约服务</text>
+<path d="M2020,262 L2740,262" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="2039" y="295" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ checkIn(id: Long, code: String): CheckIn</text>
+<text x="2039" y="329" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ checkOut(id: Long): CheckIn</text>
+<text x="2039" y="363" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ confirmManually(id: Long, reason: String): CheckIn</text>
+<text x="2039" y="397" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ expireDue(): Integer</text>
+</g>
+<g data-class="StatisticsService">
+<rect x="60" y="990" width="720" height="174" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="420.0" y="1025" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">StatisticsService</text>
+<text x="420.0" y="1055" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">统计服务 · 只读</text>
+<path d="M60,1072 L780,1072" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="79" y="1105" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ summarize(query: StatisticsQuery): StatisticsResult</text>
+<text x="79" y="1139" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ exportCsv(query: StatisticsQuery): byte[]</text>
+</g>
+<g data-class="ViolationService">
+<rect x="1030" y="990" width="760" height="276" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="1410.0" y="1025" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">ViolationService</text>
+<text x="1410.0" y="1055" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">违约与申诉服务</text>
+<path d="M1030,1072 L1790,1072" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="1049" y="1105" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ createCandidate(reservationId: Long): Violation</text>
+<text x="1049" y="1139" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ appeal(id: Long, text: String): Violation</text>
+<text x="1049" y="1173" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ review(id: Long, decision: ReviewDecision,</text>
+<text x="1073" y="1207" font-size="23" text-anchor="start" fill="#193747" font-weight="400">reason: String): Violation</text>
+<text x="1049" y="1241" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ canReserve(userId: Long): Boolean</text>
+</g>
+<g data-class="AuditService">
+<rect x="2020" y="990" width="720" height="140" fill="white" stroke="#16776b" stroke-width="2"/>
+<text x="2380.0" y="1025" font-size="29" text-anchor="middle" fill="#193747" font-weight="600">AuditService</text>
+<text x="2380.0" y="1055" font-size="21" text-anchor="middle" fill="#52727e" font-weight="400">审计服务</text>
+<path d="M2020,1072 L2740,1072" fill="none" stroke="#526777" stroke-width="2.4"/>
+<text x="2039" y="1105" font-size="23" text-anchor="start" fill="#193747" font-weight="400">+ record(entry: AuditEntry): void</text>
+</g>
+<path d="M1030,285 L780,285" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="842.135" y="234" width="125.72999999999999" height="31" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="905" y="255" font-size="21" text-anchor="middle" fill="#193747" font-weight="400">getSeat()</text>
+<rect x="836.15" y="295" width="137.7" height="31" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="905" y="316" font-size="21" text-anchor="middle" fill="#193747" font-weight="400">getRules()</text>
+<path d="M780,435 L1030,435" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="799.1" y="382" width="211.80000000000004" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="905" y="402" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">findOverlapping()</text>
+<path d="M2020,340 L1790,340" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="1844.7" y="261" width="120.6" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="281" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">getById()</text>
+<rect x="1821.9" y="292" width="166.20000000000002" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="312" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">findExpired()</text>
+<rect x="1816.2" y="359" width="177.60000000000002" height="30" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="379" font-size="20" text-anchor="middle" fill="#193747" font-weight="400">updateStatus()</text>
+<path d="M1410,524 L1410,990" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="1432" y="721" width="182.16000000000005" height="34" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1440" y="745" font-size="24" text-anchor="start" fill="#193747" font-weight="400">canReserve()</text>
+<path d="M2200,422 L2200,700 L1670,700 L1670,990" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="1694.565" y="651" width="240.87000000000006" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1815" y="674" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">createCandidate()</text>
+<path d="M1790,1180 L2020,1180 L2020,1100" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="1843.56" y="1191" width="122.88" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="1905" y="1214" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">record()</text>
+<path d="M2530,422 L2530,990" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="2552" y="710" width="122.88" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="2560" y="733" font-size="23" text-anchor="start" fill="#193747" font-weight="400">record()</text>
+<text x="2560" y="768" font-size="21" text-anchor="start" fill="#526777" font-weight="400">人工确认</text>
+<path d="M210,490 L210,590 L30,590 L30,1390 L2350,1390 L2350,1130" fill="none" stroke="#526777" stroke-width="2.4" stroke-dasharray="9 6" marker-end="url(#dependency-d4)"/>
+<rect x="361.56499999999994" y="1345" width="516.8700000000001" height="33" fill="#f6f9fb" stroke="none" stroke-width="2"/>
+<text x="620" y="1368" font-size="23" text-anchor="middle" fill="#193747" font-weight="400">record()：场地 / 座位 / 规则 / 签到码维护</text>
+<rect x="60" y="690" width="850" height="190" fill="#edf4f6" stroke="#b8cbd1" stroke-width="2"/>
+<text x="82" y="730" font-size="25" text-anchor="start" fill="#193747" font-weight="600">表示范围</text>
+<text x="82" y="771" font-size="23" text-anchor="start" fill="#193747" font-weight="400">虚线开箭头：调用方使用被依赖类的操作。</text>
+<text x="82" y="810" font-size="23" text-anchor="start" fill="#193747" font-weight="400">接口契约与组件图对应，具体映射见《类图修订说明》。</text>
+<text x="82" y="849" font-size="23" text-anchor="start" fill="#193747" font-weight="400">各服务依赖相应 Mapper；此图省略共同持久化依赖。</text>
+<text x="80" y="1240" font-size="23" text-anchor="start" fill="#526777" font-weight="400">统计通过 Mapper 只读汇总，不新增服务间调用。</text>
+<rect x="60" y="1460" width="2680" height="265" fill="#fff" stroke="#b8cbd1" stroke-width="2"/>
+<text x="85" y="1502" font-size="26" text-anchor="start" fill="#193747" font-weight="600">读图与约束</text>
+<text x="85" y="1545" font-size="24" text-anchor="start" fill="#193747" font-weight="400">+ 表示公开操作；格式：操作名(参数名: 类型): 返回类型；返回值 [0..1] / [0..*] 为 UML 多重性。</text>
+<text x="85" y="1587" font-size="24" text-anchor="start" fill="#193747" font-weight="400">所有操作类型及新增方法属于本次设计补充；请求 / 结果类型、接口映射与异常约定见《类图修订说明》。</text>
+<text x="85" y="1629" font-size="24" text-anchor="start" fill="#193747" font-weight="400">updateStatus 必须校验允许的状态迁移，并按预期状态条件更新；false 表示未更新，调用方需处理冲突。</text>
+<text x="85" y="1671" font-size="24" text-anchor="start" fill="#193747" font-weight="400">身份与操作人来自可信认证上下文；读改预约、写签到及生成违约候选沿用设计文档的锁顺序和事务边界。</text>
+</svg></section></main><article id="notes"><h1 style="font-size:32px">讲稿与备答</h1><pre># 校园自习室预约管理系统概要设计汇报讲稿
+
+修订日期：2026年11月16日。正文约5至6分钟，建议先练读一次，再按实际语速调整。展示顺序：组件图 → 核心类图 → 服务协作类图。括号内为操作提示，不必读出。
+
+## 开场 约20秒
+老师、同学们好，我负责汇报我们组校园自习室预约管理系统概要设计中的组件图和类图。我们的设计围绕“查询座位、创建预约、签到签退、异常处理”这条业务主线展开。组件图说明模块如何分工和协作，类图说明这些功能由哪些对象和服务承接。当前已经有需求、系统设计文档和可交互的界面原型，下面介绍的是设计方案。
+
+## 第一组 组件图（01A、01B）约110秒
+（先展示01A，从顶部讲到数据访问；再切换01B讲关键协作。）
+
+系统采用B/S和前后端分离架构。上方是学生端与管理端，规划使用Vue 3和TypeScript。学生端提供找座、预约、签到和个人记录，管理端提供场地维护、人工签到、违约复核和统计。两端通过REST接口访问后端，Nginx负责静态资源与HTTPS反向代理。
+
+API控制器负责参数校验、调用业务服务及返回统一结果。身份与权限组件使用Spring Security和JWT，受保护操作在执行前必须通过认证授权；学生操作还必须检查预约是不是自己的。
+
+中间是业务服务层。场地与座位组件管理房间、座位、开放规则和签到码。预约组件处理资格、时段冲突、创建与取消。履约组件处理签到、签退、人工确认和签到超时。违约与申诉组件负责候选记录、申诉复核及预约资格计算。统计组件只读汇总业务数据，审计组件记录关键操作人、时间和结果。
+
+下方是MyBatis-Plus数据访问组件和MySQL数据库。事务放在服务层组织，数据访问层负责查询、更新和锁定查询。图上的小圆球表示组件提供的接口，实线把接口连到提供者；虚线开箭头从使用方指向它所需的接口。这里划分的是逻辑组件，它们可以在同一个Spring Boot应用中部署。
+
+（切换到01B。）这部分展开同一组组件的业务协作。预约通过场地规则接口和预约资格接口完成校验；履约使用预约状态接口，并通过违约候选接口创建候选记录。场地维护还需要查询已有预约。场地维护、人工确认和违约复核通过审计接口保存操作记录。同名IAudit是同一个接口，为了读图方便重复画出。接口名称是本次概要设计补充的逻辑契约，具体方法签名仍需详细设计落实；箭头表示依赖，不表示调用顺序。
+
+## 第二张 核心类图 约100秒
+（先指向中间的Reservation，再介绍四周关系。）
+
+这张图以Reservation预约类为中心。每条预约对应一个User和一个Seat；一个用户或座位可以有多条历史预约，因此两边都是一对多。多条历史记录不代表允许同一时段重复预约，时间冲突还需要服务层校验。
+
+场地方面，一个StudyRoom包含多个Seat，并配置多条OpeningRule。开放规则记录星期、开放时间以及生效日期，预约时需要结合座位维护状态共同判断是否可用。
+
+预约最多对应一条CheckIn签到记录。刚创建预约时尚未签到，所以是零或一；签到后才创建记录，再把签退时间补进这条记录。数据库中签到表的预约编号设置唯一约束，防止一条预约产生重复签到记录。
+
+预约最多对应一条Violation违约记录，这里同样是零或一。违约候选、申诉和复核围绕这条记录处理。多次处理的历史存入ViolationEvent，所以一条违约可以有多条处理事件。这样既能保存当前处理状态，也能保留每次处理人、原因和时间；撤销违约时不会把原始记录删掉。
+
+图中实体主要保存业务数据，例如预约的起止时间与状态、用户的密码哈希、签到时间和违约状态。属性前的减号表示私有，日期和时间使用明确的Java类型，可缺省的签退时间标为零或一。为了让图适合汇报，楼栋、签到码和审计日志等辅助实体没有全部展开；业务方法放在下一张服务协作图中说明。
+
+## 第三张 服务协作类图 约90秒
+（先指向上排中间的ReservationService，再指向右侧CheckInService和下排ViolationService。）
+
+ReservationService提供创建、取消和可用性查询。创建预约时，它需要场地规则以及ViolationService提供的预约资格判断。按照设计方案，在同一事务中先锁定用户行，再锁定座位行，然后用当前读检查用户和座位是否存在重叠的有效预约，最后写入预约。这样同时考虑了两个人抢同一个座位，以及同一个人同时抢不同座位的情况。
+
+预约时段采用左闭右开的区间。例如14点到15点，与15点到16点不重叠。取消只允许本人操作待签到预约，并且距离开始时间必须严格大于30分钟。
+
+CheckInService负责签到、签退、人工确认及超时扫描。当前设计的签到窗口是从预约开始到开始后15分钟之前，截止时刻不再接受普通签到。服务端核对身份、预约状态、时间窗口及该房间的有效六位签到码，成功后在同一事务中写入签到记录并更新预约状态。
+
+超时扫描每分钟执行，重新检查待签到状态后，更新为未签到违约并调用违约服务生成候选。新版明确列出getById、findExpired和updateStatus，让读取、查询超时预约和状态更新都有对应操作。状态条件更新与预约编号唯一约束一起保证重复扫描不会生成重复违约。复核由ViolationService处理，场地维护、人工确认和复核都调用AuditService.record记录审计。
+
+图中的加号表示公开操作，每个操作都列明参数和返回类型。原文未给出完整签名的部分，本次按职责补成设计约定，具体来源和请求类型放在配套说明中；它们仍需在后端实现时落实。
+
+## 结束 约20秒
+这两类图分别落实了模块职责、对象关系和服务协作，为后续接口、数据库和详细设计提供依据。我们还需要统一签到验收时间、信用暂停起算和签到码轮换等细节，并通过后端实现与测试验证并发和状态一致性。我的汇报结束，谢谢大家。
+
+## 时间紧张时的三分钟用法
+保留开场；组件图每层只讲一句，重点点出六个业务组件；类图重点讲用户与预约、预约与签到、预约与违约及处理事件；服务图只讲固定锁顺序和签到超时的幂等处理。备答内容不主动逐条念。
+
+
+# 汇报备答与资料差异核对
+
+## 使用依据与成果范围
+本次以压缩包docs/校园自习室预约管理系统_系统设计方案.docx V1.0为主要设计依据，对照软件需求规格说明.docx V1.0、需求讨论结果.docx、项目组讨论记录表.docx，以及prototype/README.md与app.js。压缩包共20个目录或文件条目，没有Java后端源文件、数据库迁移脚本或后端测试。已有的是设计文档和HTML/CSS/原生JavaScript界面原型，Vue与Spring Boot等属于规划技术栈。不能称为从已实现后端代码反向导出的类图，也不能声称已完成并发测试。
+
+重绘依据：组件图对应设计方案第2.1、2.2节；实体关系与唯一约束对应第4.1、4.2节；原服务方法名对应第4.3节；预约和签到规则对应第3.1、3.2节；安全与签到码对应第6节；待确认项对应第8节。新版类图按课程第五章第58、65、68–70页补齐属性与操作类型，新增操作和请求类型属于本次设计补充，详见《类图修订说明》。OpeningRule、ViolationEvent等名称由设计表结构整理；核心图省略Building、CheckInCode、AuditLog、部分属性及关联。
+
+## 相比上一版已修正的内容
+- Attendance统一为详细设计使用的CheckIn。
+- 预约与违约从0..*修正为0..1，与violation.reservation_id唯一约束一致。
+- 增加OpeningRule与ViolationEvent，区分当前违约记录和历次处理事件。
+- 将canReserve归入ViolationService；创建取消、签到签退等职责按设计文档归入相应服务。
+- 组件图细化为身份权限、场地、预约、履约、违约申诉、统计和审计，并明确API与持久层。
+- 补充开始前严格大于30分钟才能取消、15分钟签到窗口、5分钟签到码有效期及固定锁顺序。
+
+## UML组件图本次修订
+
+- 保留原有组件划分，将组件图分为01A总体接口与数据访问、01B关键业务协作两个视图；同名组件表示同一组件，不是新增模块或部署实例。
+- 使用组件矩形及组件图标、提供接口圆球、使用依赖虚线开箭头。实线连接提供接口与提供者；虚线从使用方指向所需接口。本图统一以此表达所需接口，不混用插口与装配连接。
+- API分别依赖IRoom、IReservation、ICheckIn、IViolation、IStatistics；IAudit是业务内部使用的接口，没有新增前端直接调用审计的入口。身份与权限提供IIdentity。
+- 补齐预约→场地规则、预约→预约资格、履约→预约状态、履约→违约候选，以及场地维护→预约查询的依赖。场地维护、人工确认、违约复核分别使用审计接口。同名IAudit重复绘制只为减少交叉线。
+- Mapper按职责提供场地、预约、履约、违约、统计、审计及用户数据访问接口。按职责划分查询能力，不要求每个接口只访问一张同名表，也不代表多个独立数据库。统计接口只读。
+- IRoomRules是场地服务契约的细分；IReservationQuery、IReservationState是预约服务契约的细分；IEligibility、IViolationCandidate是违约服务契约的细分。它们是根据设计职责补充的接口设计名称，不是已存在的Java接口。预约查询和状态更新的设计签名现已在新版服务协作类图中补齐。
+- 组件图不展开Nginx部署拓扑、锁顺序及完整定时任务流程；这些内容仍由设计文档和讲稿说明。新版类图与服务协作类图已放入本修订目录，原文件夹保持不变。
+- 课程绘图依据采用《5 系统设计.pdf》第49–50、53–54页。用户已替换错误的第二份课件，旧《2.概要设计.pdf》不再作为课程依据；系统设计方案第1.2节的旧引用尚需另行同步。
+
+## 材料中需要统一的差异
+
+| 问题 | 证据与当前汇报口径 | 尚需处理 |
+|---|---|---|
+| 签到15分钟与20分钟 | 需求4.2.6和设计3.2采用15分钟；需求AC-03写20分钟。汇报按[start,start+15分钟)讲解 | 设计第8节把20分钟解释为最迟处理验收点，但该解释仍需确认；不能说窗口为20分钟 |
+| 原型写提前15分钟签到 | app.js预约成功提示如此，与业务规则相反 | 汇报讲开始后15分钟内；现场演示前应单独修订原型文案，本次未改源项目 |
+| 原型签到验证 | app.js只验证六位数字格式，随后显示成功，并未核对真正的签到码、身份或时间；README给出演示码 | 原型只能展示交互，不能证明后端鉴权与签到规则已实现 |
+| 预约与签到的数量 | 需求4.3.1及嵌入ER图写1:1；设计4.1明确零或一，check_in表设预约外键唯一 | 生命周期中未签到预约没有签到记录，汇报采用1对0..1 |
+| 区间预约的并发 | 早期讨论写座位时段唯一约束、座位置为占用；详细设计3.1改为用户与座位行锁、当前读重叠检查 | 普通唯一约束只排除相同键，不能排除任意重叠区间；采用详细设计方案，不宣传一个全局占用标志 |
+| 通知服务 | 需求4.4.1和设计内嵌旧顺序图包含异步通知；设计2.2组件表与5.2文字未给出通知接口和保障 | 本次核心图不引入消息队列或独立通知服务；提醒交付方式需进一步明确 |
+| 违约计数与暂停 | 需求写30天内3次有效违约暂停7天；设计3.3建议候选确认后计数，按触发阈值的违约发生时间起算 | 第8节仍列为待确认，不能将候选直接等同有效违约；迟确认及撤销后的重算边界需细化 |
+| 签到码 | 六位数字、有效5分钟已有文档依据 | 手动还是自动换码、现场传达方式仍待定，不宣称已自动轮换 |
+| 预约范围与结束规则 | 早期讨论的提前7天、最长4小时标为暂定；设计第8节仍待明确 | 不当作已确定限制；提前签退释放、到期未签退及场地变更处理同样待确认 |
+
+## 老师可能追问的问题
+
+**1. 为什么叫组件图，里面却没有把每个功能都部署成独立服务？**
+组件表达职责和接口依赖，部署方式是另一层设计。这里的逻辑组件规划在同一个Spring Boot应用内协作，没有独立微服务部署要求。
+
+**2. 为什么类图分成实体和服务两张？**
+实体图解释业务数据及数量关系，服务图解释业务操作和协作。设计方案第4.3节已经区分实体、业务服务和Mapper；分图让属性、关联与服务方法更容易读清。
+
+**3. 为什么没有Student与Administrator的继承关系？**
+需求分析把管理员视为角色；详细数据设计采用user_account.role。当前实现设计采用角色授权，不需要为了两个页面入口强行增加继承层次。若未来增加不同用户类型的独立行为，再评估继承或角色关联。
+
+**4. 一对多关系是否意味着允许重复预约？**
+不意味着。多重性描述历史记录数量。有效预约还需满足区间不重叠，重叠条件是已有start &lt; 请求end且已有end &gt; 请求start。端点相接不重叠。
+
+**5. 为什么锁用户行之后还要锁座位行？**
+用户锁避免同一用户在同一时段并发预约多个座位；座位锁避免多个用户并发抢同一座位。必须在同一事务内加锁、当前读校验、写入并提交；所有影响资格或可用性的写操作遵守设计中的锁协议。顺序一致可降低死锁风险，不能承诺绝无死锁，仍需回滚重试处理。
+
+**6. 签到与超时任务同时执行怎么办？**
+采用一致加锁顺序，锁内重新检查状态与服务器时间，避免基于过期快照更新。即使签到先拿到锁，若已经超过截止时刻也必须拒绝。状态条件更新和唯一约束防止重复签到、重复候选。
+
+**7. 为什么违约只有一条，还能反复申诉复核？**
+Violation表示某次预约的违约事项，ViolationEvent保存每次处理动作。一条事项配多条事件即可追溯处理过程，无需为同一预约重复创建违约事项。
+
+**8. 撤销违约能直接恢复原预约吗？**
+按设计3.2与3.3，不能。复核修改违约处理状态并重算信用，预约终态不直接恢复，以免占用已经重新分配给别人的座位；继续使用需要另行预约。
+
+**9. 为什么不用组合关系连接房间、座位？**
+文档没有确定对象删除时的级联生命周期规则。普通关联足以表达归属，避免把历史预约、座位删除及数据保留策略提前绑定为组合语义。
+
+**10. 现在是否已经达到300人在线和响应时间指标？**
+尚无证据。文档给出容量与性能目标，压缩包没有后端实现和压测结果。汇报时只能说“设计目标”，不能说“已经达到”。
+
+**11. 为什么没有把统计画成数据库中的Summary实体？**
+需求中的Summary属于分析概念，详细设计由StatisticsService聚合业务表，未定义独立Summary表。本次不将统计结果误当作已设计的持久实体。
+
+**12. 服务协作图是否列出了全部调用？**
+不是。它突出预约、履约、场地、违约之间的关键依赖，并明确画出场地维护、人工确认、违约复核到审计的依赖；各服务到对应Mapper的共同依赖以文字归并。RoomService、StatisticsService和AuditService的原文未给出完整方法签名，新版根据职责补充了设计操作及类型，来源、接口映射和请求类型均写在《类图修订说明》中。这些是设计补充，不能称为已有后端实现。
+
+## 汇报前最后检查
+用展示页按左右箭头切换，确认投影上类名和0..1可读。若现场演示原型，先说明它是交互原型；不要用原型成功提示证明业务校验已实现。涉及未统一条目，回答“当前设计采用这一口径，需求与验收文本还需同步”，不要临场补造已确认结论。
+
+
+# 类图修订说明
+
+本次只修改“概要设计汇报包_新”，原“概要设计汇报包”和主设计文档保持原样。两张类图是同一设计模型的不同视图：实体视图说明数据与关联，服务视图说明公开操作与使用依赖。图中保留原设计的方法名，并补充实现协作所需的签名；这不是从后端代码反向生成的类图。
+
+## 课程要求与本次落实
+
+依据当前课程课件 `ppt/5 系统设计.pdf`，不使用已移除的旧第二份课件。
+
+| 课件页码 | 要求 | 本次落实 |
+|---|---|---|
+| 58 | 类名、属性、操作分区；后两个分区可省略 | 实体图展示类名与属性，服务图展示类名与操作；中文行是名称解释，不是额外属性 |
+| 59、70 | 正确选择类间关系并设置基数 | 实体之间用普通关联，标明每一端多重性；服务之间用虚线开箭头表达使用依赖 |
+| 65 | 接收的消息应对应类的方法 | 给预约读取、超时查询、条件更新及审计调用补齐接收方操作 |
+| 65、68 | 补齐属性、参数和返回类型，采用适当语言类型 | 逐项拆开属性；补全所展示操作的参数及返回类型；日期使用Java时间类型 |
+| 69 | 根据职责确定操作并考虑异常情况 | 将场地、统计、审计的职责转换为公开操作，并明确失败与并发约定 |
+
+## UML表示约定
+
+- 属性采用 `- 名称: 类型`，`-` 表示私有；操作采用 `+ 名称(参数名: 类型): 返回类型`，`+` 表示公开。
+- 实线关联两端分别标 `1`、`0..1` 或 `0..*`。未标导航箭头表示本视图不指定导航性，不宣称自动存在双向对象引用。
+- 虚线开箭头从使用方指向被使用的服务类，线旁文字列出接收方操作；这是类级使用关系，不是消息时序，也不是继承或接口实现。组件图中的接口边界通过下表映射，不把接口名称误画成类的继承关系。
+- 返回类型后的 `[0..1]` 表示可缺省，`[0..*]` 表示集合；这是UML多重性。Java实现可分别映射为 `Optional&lt;T&gt;` 和 `List&lt;T&gt;` 等，不把图中签名当作可直接编译的代码。未标多重性的返回结果为单值；`void` 无返回值，`byte[]` 为CSV内容。
+- `LocalDate`、`LocalTime`、`LocalDateTime` 对应日期、一天中的时间和日期时间；业务时区沿用设计方案的 `Asia/Shanghai`。对象ID使用 `Long`；状态和角色仍沿用原设计的 `String`，合法值由业务规则约束。
+- 核心实体保持部分属性、部分关联的展示范围；辅助实体、部分外键及访问器省略。业务操作由原方案的服务层承接，不为填满分区而给实体附加CRUD方法。
+- 文档未确定对象删除生命周期，因此不添加聚合、组合或角色继承。预约的两个 `0..1` 保持不变，与签到、违约表中预约外键唯一约束一致。
+
+## 新版组件接口与类操作映射
+
+| 组件接口 | 提供操作的类 | 对应操作 |
+|---|---|---|
+| IRoom / IRoomRules | RoomService | getSeat、getRules；IRoom另外提供updateRoom、updateSeat、setOpeningRules、setCheckInCode |
+| IReservation | ReservationService | create、cancel、findAvailable |
+| IReservationQuery | ReservationService | findOverlapping；用于场地维护前查询有效预约 |
+| IReservationState | ReservationService | getById、findExpired、updateStatus；用于履约读取预约、查询超时项及状态更新 |
+| ICheckIn | CheckInService | checkIn、checkOut、confirmManually、expireDue |
+| IViolation / IEligibility | ViolationService | canReserve；IViolation还提供appeal、review |
+| IViolationCandidate | ViolationService | createCandidate |
+| IStatistics | StatisticsService | summarize、exportCsv |
+| IAudit | AuditService | record |
+
+接口为组件提供的契约，类图的连线表达服务职责之间的逻辑使用关系。实现时通过相应接口协作，不据此要求直接注入具体服务类。场地规则查询与预约查询是两个不同方向的依赖；它们不表示方法互相递归调用，具体实现应避免循环构造注入。
+
+## 方法来源与补充范围
+
+原设计方案第4.3节已有以下方法名：ReservationService的create、cancel、findAvailable；CheckInService的checkIn、checkOut、confirmManually、expireDue；ViolationService的createCandidate、appeal、review、canReserve。本次为它们补充参数类型与返回类型，方法名保持不变。
+
+以下操作名称和签名是本次依据职责补充的设计：
+
+- ReservationService：getById、findOverlapping、findExpired、updateStatus，承接设计第2.2节的协作和第3.1、3.2节的查询、状态处理。
+- RoomService：getSeat、getRules以及四项维护操作，依据第2.2、4.3节职责及第5.1节场地、座位、开放规则、签到码接口。
+- StatisticsService：summarize、exportCsv，依据第3.4、5.1节统计和CSV导出。
+- AuditService：record，依据第2.2、5.1、5.2节关键管理操作的审计要求。
+
+这些补充尚未写回主设计文档或实现为后端代码。图中的服务返回业务对象；API层负责转换响应对象、统一响应和字段裁剪，不直接序列化数据库实体。
+
+## 请求与结果类型
+
+为避免操作签名堆积大量参数，图中引用以下请求/结果类型。它们是本次补充的值对象或DTO，不代表新增数据库表。字段类型及可选性如下；未列出的实现字段不在本次图的范围内。
+
+| 类型 | 字段或取值 |
+|---|---|
+| ReservationRequest | seatId: Long；startAt、endAt: LocalDateTime。用户身份从认证上下文获得 |
+| AvailabilityQuery | roomId: Long [0..1]；startAt、endAt: LocalDateTime；attributes: String [0..1] |
+| ReservationQuery | seatIds: Long [0..*]；userId: Long [0..1]；startAt、endAt: LocalDateTime。至少指定座位范围或用户；仅查询与区间重叠的有效预约 |
+| ReservationStateChange | reservationId: Long；expectedStatus、targetStatus: String。目标状态必须属于允许的迁移 |
+| RoomChange | roomId: Long；name、status: String [0..1]；floor: Integer [0..1]。只更新提交的字段 |
+| SeatChange | seatId: Long；seatNo、attributes、status: String [0..1]。只更新提交的字段 |
+| OpeningRuleChange | roomId: Long；rules: OpeningRule [0..*]。提交新的规则集合，先校验规则重叠及已有预约冲突 |
+| CheckInCodeChange | roomId: Long；code: String；validFrom、validUntil: LocalDateTime。校验六位数字与5分钟有效期；持久化仅保存安全校验值 |
+| ReviewDecision | 枚举：KEEP（维持）、REVOKE（撤销）、RETURN_FOR_INFO（退回补充） |
+| StatisticsQuery | roomId: Long [0..1]；fromDate、toDate: LocalDate。结束日期包含当天，统计区间转换沿用设计第3.4节 |
+| StatisticsResult | reservationRate、checkInRate: BigDecimal [0..1]；hotPeriods: TimeBucket [0..*]。分母为零时比率缺省，界面显示“无数据” |
+| TimeBucket | startTime、endTime: LocalTime；seatMinutes: Long。表示聚合结果，不是持久化实体 |
+| AuditEntry | operatorId: Long；action、targetType、result: String；targetId: Long；reason: String [0..1]；createdAt: LocalDateTime。操作人与时间来自可信上下文 |
+
+AuditEntry.reason用于承接原方案要求的人工确认、复核原因。主文档的audit_log字段清单未单列reason，本次仅补充接口输入；持久化映射需同步细化，不能据此宣称数据库已具备该字段。完整签到码和密码不进入审计内容。
+
+## 返回结果、异常与事务约定
+
+- getById、getSeat：不存在时返回缺省值；调用方按具体业务转换为资源不存在错误。集合查询无结果时返回空集合。
+- create、cancel、checkIn、checkOut、confirmManually、createCandidate、appeal、review：成功返回处理后的业务对象；权限、时间、状态、资格或冲突不满足时报告业务错误。取消和候选生成仍遵守原设计的幂等要求。
+- findExpired(deadline)：只返回待签到且签到截止时刻不晚于deadline的预约，供扫描使用；deadline采用服务器当前扫描时间。扫描结果不保证后续状态不变，处理时必须重新加锁和校验。
+- updateStatus：必须先校验合法迁移，并在同一事务中按预期状态条件更新。成功返回true；预期状态不匹配返回false。调用方遇到false不得继续提交相关签到或违约候选写入，应按业务冲突处理或回滚。该操作不开放为前端任意改状态接口。
+- expireDue：返回本次成功处理的超时预约数量。锁顺序、签到窗口、重复扫描和唯一约束仍遵循设计第3.1、3.2节。
+- record、规则/签到码维护操作：成功无返回值；参数、权限或持久化失败通过异常报告。审计中的操作人不接受不可信客户端任意指定。
+- statistics结果只读，exportCsv返回CSV字节内容，不新增Summary持久实体。统计口径和待确认规则仍以原设计说明为准。
+- 类图中的依赖不代表异步调用或独立事务。服务嵌套协作应参与当前事务，保持预约更新、签到写入、违约候选及关键审计的一致性；数据访问仍通过对应Mapper完成。
+</pre></article><script>let idx=0;const ss=[...document.querySelectorAll('section')],counter=document.querySelector('#counter');function show(n){idx=Math.max(0,Math.min(ss.length-1,n));ss.forEach((s,i)=>s.classList.toggle('active',i===idx));counter.textContent=(idx+1)+' / '+ss.length}document.querySelector('#prev').onclick=()=>show(idx-1);document.querySelector('#next').onclick=()=>show(idx+1);document.querySelector('#toggle').onclick=()=>document.body.classList.toggle('reading');document.onkeydown=e=>{if(e.key==='ArrowRight')show(idx+1);if(e.key==='ArrowLeft')show(idx-1)};show(0);</script></html>

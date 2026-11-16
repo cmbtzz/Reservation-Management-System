@@ -1,0 +1,119 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>校园自习室预约管理系统概要设计汇报</title><style>*{box-sizing:border-box}body{margin:0;background:#e7eef2;color:#193747;font-family:"Microsoft YaHei",sans-serif}nav{height:58px;display:flex;gap:14px;align-items:center;padding:10px 24px;background:white}button,a{font:inherit;color:#135e55}button{border:1px solid #93b8ad;background:white;padding:7px 16px;border-radius:5px;cursor:pointer}main{height:calc(100vh - 58px)}section{display:none;width:100%;height:100%;align-items:center;justify-content:center}section.active{display:flex}svg{width:100%;height:100%;object-fit:contain}h1{font-size:64px}h2{font-size:30px}.cover{padding:50px}.cover p{font-size:22px;line-height:1.8}#notes{display:none;background:white;padding:25px;max-width:1000px;margin:auto}pre{white-space:pre-wrap;font:18px/1.8 "Microsoft YaHei",sans-serif}body.reading main{display:none}body.reading #notes{display:block}@media print{nav,#notes{display:none!important}main{height:auto}section{display:flex;height:95vh;break-after:page}svg{max-height:95vh}}</style><nav><button id="prev">上一页</button><span id="counter"></span><button id="next">下一页</button><button id="toggle">讲稿与备答</button><span>← → 翻页　F11 浏览器全屏</span></nav><main><section class="active"><div class="cover"><p>校园自习室预约管理系统</p><h1>概要设计汇报</h1><h2>组件图 · 核心领域类图 · 服务协作</h2><p>按项目系统设计方案 V1.0 修订　|　2026.11.16</p><p>需求与设计结果已有文档依据；界面原型用于展示交互。</p></div></section><section class=""><svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1150" viewBox="0 0 1600 1150"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#526777" stroke-width="1.5"/></marker></defs><style>text{font-family:Microsoft YaHei,Arial,sans-serif;fill:#193747}.small{font-size:18px}.edge{fill:none;stroke:#526777;stroke-width:2}</style><rect width="1600" height="1150" fill="#f6f9fb"/><text x="45" y="55" font-size="32">01  组件图：分层结构与业务职责</text><text x="45" y="92" font-size="19">依据系统设计方案 V1.0 第2节重绘 · 逻辑组件，不表示独立部署的微服务</text><rect x="45" y="135" width="390" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="61" y="158" font-size="16">«component» Vue 3 / TypeScript</text><text x="61" y="183" font-size="23">学生端 / 管理端</text><path d="M45 201h390" stroke="#16776b"/><text x="61" y="229" font-size="19">查询、预约、签到、记录</text><text x="61" y="258" font-size="19">场地维护、人工签到、复核、统计</text><rect x="580" y="135" width="440" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="596" y="158" font-size="16">«component» Spring MVC</text><text x="596" y="183" font-size="23">API 控制器</text><path d="M580 201h440" stroke="#16776b"/><text x="596" y="229" font-size="19">参数校验、资源归属检查</text><text x="596" y="258" font-size="19">调用业务服务、返回统一响应</text><rect x="1160" y="135" width="395" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1176" y="158" font-size="16">«component»</text><text x="1176" y="183" font-size="23">身份与权限</text><path d="M1160 201h395" stroke="#16776b"/><text x="1176" y="229" font-size="19">登录、令牌验证、角色授权</text><text x="1176" y="258" font-size="19">Spring Security / JWT</text><path class="edge" d="M435 220 L580 220" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="449" y="202" font-size="18">REST API</text><path class="edge" d="M1020 220 L1160 220" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="1032" y="201" font-size="18">使用鉴权</text><rect x="35" y="380" width="1530" height="365" rx="10" fill="#eaf4f1" stroke="#8db6ae" stroke-dasharray="6 4"/><text x="55" y="410" font-size="21">业务服务层  ·  Spring Boot 3  ·  由服务管理事务</text><path class="edge" d="M800 275 L800 380" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="820" y="345" font-size="18">调用对应业务接口</text><rect x="55" y="435" width="480" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="71" y="458" font-size="16">«component»</text><text x="71" y="483" font-size="23">场地与座位</text><path d="M55 501h480" stroke="#16776b"/><text x="71" y="529" font-size="19">楼栋、房间、座位、开放规则</text><text x="71" y="558" font-size="19">维护签到码；查询可用性</text><rect x="560" y="435" width="480" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="576" y="458" font-size="16">«component»</text><text x="576" y="483" font-size="23">预约</text><path d="M560 501h480" stroke="#16776b"/><text x="576" y="529" font-size="19">资格与冲突检查、创建、取消</text><text x="576" y="558" font-size="19">用户行 → 座位行锁定协议</text><rect x="1065" y="435" width="480" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1081" y="458" font-size="16">«component»</text><text x="1081" y="483" font-size="23">履约</text><path d="M1065 501h480" stroke="#16776b"/><text x="1081" y="529" font-size="19">签到、签退、人工确认</text><text x="1081" y="558" font-size="19">超时处理、生成违约候选</text><rect x="55" y="610" width="480" height="111" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="71" y="633" font-size="16">«component»</text><text x="71" y="658" font-size="23">违约与申诉</text><path d="M55 676h480" stroke="#16776b"/><text x="71" y="704" font-size="19">候选、申诉、复核、资格计算</text><rect x="560" y="610" width="480" height="111" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="576" y="633" font-size="16">«component»</text><text x="576" y="658" font-size="23">统计</text><path d="M560 676h480" stroke="#16776b"/><text x="576" y="704" font-size="19">只读汇总预约、签到及场地数据</text><rect x="1065" y="610" width="480" height="111" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1081" y="633" font-size="16">«component»</text><text x="1081" y="658" font-size="23">审计</text><path d="M1065 676h480" stroke="#16776b"/><text x="1081" y="704" font-size="19">保存关键操作人、时间和结果</text><rect x="470" y="820" width="660" height="111" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="486" y="843" font-size="16">«component»</text><text x="486" y="868" font-size="23">Mapper 数据访问组件</text><path d="M470 886h660" stroke="#16776b"/><text x="486" y="914" font-size="19">MyBatis-Plus：查询、条件更新、锁定查询</text><path class="edge" d="M800 745 L800 820" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="825" y="790" font-size="18">各业务服务按职责访问</text><rect x="470" y="1000" width="660" height="64" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="486" y="1031" font-size="23">MySQL 8  业务表与审计记录</text><path d="M470 1048h660" stroke="#16776b"/><path class="edge" d="M800 931 L800 1000" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="825" y="986" font-size="18">SQL</text><text x="45" y="1085" font-size="18">虚线箭头：调用者依赖提供者。层内协作见“服务协作类图”；认证在受保护业务执行前完成。</text><text x="45" y="1112" font-size="18">Nginx 提供静态资源与 HTTPS 反向代理；每分钟定时任务调用 CheckInService.expireDue()。</text></svg></section><section class=""><svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1220" viewBox="0 0 1600 1220"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#526777" stroke-width="1.5"/></marker></defs><style>text{font-family:Microsoft YaHei,Arial,sans-serif;fill:#193747}.small{font-size:18px}.edge{fill:none;stroke:#526777;stroke-width:2}</style><rect width="1600" height="1220" fill="#f6f9fb"/><text x="45" y="55" font-size="32">02  核心领域类图：以预约为中心组织业务数据</text><text x="45" y="92" font-size="19">属性按系统设计方案第4节整理 · 为保持可读性省略部分字段、辅助实体和外键属性</text><rect x="45" y="140" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="61" y="171" font-size="23">StudyRoom 自习室</text><path d="M45 188h420" stroke="#16776b"/><text x="61" y="216" font-size="19">- id: Long</text><text x="61" y="245" font-size="19">- buildingId: Long</text><text x="61" y="274" font-size="19">- name: String</text><text x="61" y="303" font-size="19">- status: String</text><rect x="590" y="140" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="606" y="171" font-size="23">Seat 座位</text><path d="M590 188h420" stroke="#16776b"/><text x="606" y="216" font-size="19">- id: Long</text><text x="606" y="245" font-size="19">- seatNo: String</text><text x="606" y="274" font-size="19">- attributes: String</text><text x="606" y="303" font-size="19">- status: String</text><rect x="1135" y="140" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1151" y="171" font-size="23">User 用户</text><path d="M1135 188h420" stroke="#16776b"/><text x="1151" y="216" font-size="19">- id: Long</text><text x="1151" y="245" font-size="19">- account: String</text><text x="1151" y="274" font-size="19">- passwordHash: String</text><text x="1151" y="303" font-size="19">- role / status: String</text><rect x="45" y="470" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="61" y="501" font-size="23">OpeningRule 开放规则</text><path d="M45 518h420" stroke="#16776b"/><text x="61" y="546" font-size="19">- id: Long</text><text x="61" y="575" font-size="19">- weekday: Integer</text><text x="61" y="604" font-size="19">- startTime / endTime: Time</text><text x="61" y="633" font-size="19">- effectiveFrom / To: Date</text><rect x="590" y="470" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="606" y="501" font-size="23">Reservation 预约</text><path d="M590 518h420" stroke="#16776b"/><text x="606" y="546" font-size="19">- id: Long</text><text x="606" y="575" font-size="19">- reservationNo: String</text><text x="606" y="604" font-size="19">- startAt / endAt: DateTime</text><text x="606" y="633" font-size="19">- status: String</text><rect x="45" y="850" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="61" y="881" font-size="23">CheckIn 签到记录</text><path d="M45 898h420" stroke="#16776b"/><text x="61" y="926" font-size="19">- id: Long</text><text x="61" y="955" font-size="19">- checkedInAt: DateTime</text><text x="61" y="984" font-size="19">- checkedOutAt: DateTime [0..1]</text><text x="61" y="1013" font-size="19">- method: String</text><rect x="590" y="850" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="606" y="881" font-size="23">Violation 违约记录</text><path d="M590 898h420" stroke="#16776b"/><text x="606" y="926" font-size="19">- id: Long</text><text x="606" y="955" font-size="19">- occurredAt: DateTime</text><text x="606" y="984" font-size="19">- status: String</text><text x="606" y="1013" font-size="19">- appealText: String [0..1]</text><rect x="1135" y="850" width="420" height="180" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1151" y="881" font-size="23">ViolationEvent 处理事件</text><path d="M1135 898h420" stroke="#16776b"/><text x="1151" y="926" font-size="19">- id: Long</text><text x="1151" y="955" font-size="19">- action: String</text><text x="1151" y="984" font-size="19">- operatorId: Long</text><text x="1151" y="1013" font-size="19">- reason / createdAt</text><path class="edge" d="M465 235 L590 235"/><text x="478" y="220" font-size="18">1</text><text x="540" y="220" font-size="18">0..*</text><path class="edge" d="M255 320 L255 470"/><text x="269" y="347" font-size="18">1</text><text x="269" y="454" font-size="18">0..*</text><text x="275" y="402" font-size="18">配置</text><path class="edge" d="M800 320 L800 470"/><text x="815" y="347" font-size="18">1</text><text x="815" y="454" font-size="18">0..*</text><text x="825" y="402" font-size="18">关联预约</text><path class="edge" d="M1345 320 L1345 550 L1010 550"/><text x="1360" y="348" font-size="18">1</text><text x="1026" y="534" font-size="18">0..*</text><text x="1150" y="532" font-size="18">发起</text><path class="edge" d="M590 580 L520 580 L520 790 L255 790 L255 850"/><text x="556" y="565" font-size="18">1</text><text x="270" y="837" font-size="18">0..1</text><text x="315" y="775" font-size="18">签到结果</text><path class="edge" d="M800 650 L800 850"/><text x="815" y="679" font-size="18">1</text><text x="815" y="833" font-size="18">0..1</text><text x="825" y="748" font-size="18">违约候选</text><path class="edge" d="M1010 945 L1135 945"/><text x="1022" y="930" font-size="18">1</text><text x="1082" y="930" font-size="18">0..*</text><text x="45" y="1155" font-size="18">实线为普通关联；数量标在各端：每条预约属于1个用户和1个座位，最多1条签到与1条违约记录。</text><text x="45" y="1182" font-size="18">CheckIn.reservationId 与 Violation.reservationId 均唯一；处理历史写入 ViolationEvent。</text><text x="45" y="1209" font-size="18">本图非完整数据库图：Building、CheckInCode、AuditLog 等辅助实体省略；字段类型为汇报简写。</text></svg></section><section class=""><svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120"><defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1L9 5L1 9" fill="none" stroke="#526777" stroke-width="1.5"/></marker></defs><style>text{font-family:Microsoft YaHei,Arial,sans-serif;fill:#193747}.small{font-size:18px}.edge{fill:none;stroke:#526777;stroke-width:2}</style><rect width="1600" height="1120" fill="#f6f9fb"/><text x="45" y="55" font-size="32">03  服务协作类图：业务规则由服务组织</text><text x="45" y="92" font-size="19">补充页 · 方法名沿用系统设计方案第4.3节 · 虚线箭头表示使用依赖</text><rect x="45" y="160" width="460" height="169" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="61" y="183" font-size="16">«service»</text><text x="61" y="208" font-size="23">ReservationService</text><path d="M45 226h460" stroke="#16776b"/><text x="61" y="254" font-size="19">+ create(request)</text><text x="61" y="283" font-size="19">+ cancel(id)</text><text x="61" y="312" font-size="19">+ findAvailable(query)</text><rect x="600" y="160" width="430" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="616" y="183" font-size="16">«service»</text><text x="616" y="208" font-size="23">RoomService</text><path d="M600 226h430" stroke="#16776b"/><text x="616" y="254" font-size="19">场地与开放规则维护</text><text x="616" y="283" font-size="19">提供场地查询与规则校验</text><rect x="1120" y="160" width="435" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1136" y="183" font-size="16">«service»</text><text x="1136" y="208" font-size="23">StatisticsService</text><path d="M1120 226h435" stroke="#16776b"/><text x="1136" y="254" font-size="19">只读聚合预约与履约数据</text><text x="1136" y="283" font-size="19">统计口径按设计方案第3.4节</text><rect x="45" y="540" width="460" height="198" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="61" y="563" font-size="16">«service»</text><text x="61" y="588" font-size="23">CheckInService</text><path d="M45 606h460" stroke="#16776b"/><text x="61" y="634" font-size="19">+ checkIn(id, code)</text><text x="61" y="663" font-size="19">+ checkOut(id)</text><text x="61" y="692" font-size="19">+ confirmManually(id, reason)</text><text x="61" y="721" font-size="19">+ expireDue()</text><rect x="600" y="540" width="430" height="198" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="616" y="563" font-size="16">«service»</text><text x="616" y="588" font-size="23">ViolationService</text><path d="M600 606h430" stroke="#16776b"/><text x="616" y="634" font-size="19">+ createCandidate(reservationId)</text><text x="616" y="663" font-size="19">+ appeal(id, text)</text><text x="616" y="692" font-size="19">+ review(id, decision, reason)</text><text x="616" y="721" font-size="19">+ canReserve(userId)</text><path class="edge" d="M505 245 L600 245" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="515" y="225" font-size="18">场地</text><path class="edge" d="M275 540 L275 329" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="293" y="438" font-size="18">读取 / 更新预约</text><path class="edge" d="M505 650 L600 650" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="515" y="630" font-size="18">违约</text><path class="edge" d="M480 329 L480 435 L810 435 L810 540" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="550" y="416" font-size="18">预约资格查询</text><rect x="1120" y="540" width="435" height="140" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="1136" y="563" font-size="16">«service»</text><text x="1136" y="588" font-size="23">审计服务</text><path d="M1120 606h435" stroke="#16776b"/><text x="1136" y="634" font-size="19">管理操作记录操作者与原因</text><text x="1136" y="663" font-size="19">保留处理结果和时间</text><path class="edge" d="M1030 650 L1120 650" stroke-dasharray="7 5" marker-end="url(#arrow)"/><text x="1038" y="630" font-size="18">审计</text><rect x="370" y="910" width="860" height="111" rx="7" fill="white" stroke="#16776b" stroke-width="2"/><text x="386" y="933" font-size="16">«persistence»</text><text x="386" y="958" font-size="23">Repository / Mapper</text><path d="M370 976h860" stroke="#16776b"/><text x="386" y="1004" font-size="19">业务服务按职责读写实体与锁定查询；不承载角色判断</text><text x="55" y="850" font-size="20">持久化依赖统一说明：各服务 → 对应 Mapper → MySQL；为避免交叉线，未逐一展开。</text><text x="45" y="1055" font-size="18">RoomService 与 StatisticsService 的方法签名原文未列出，本图只标职责；审计服务名称亦为职责标识。</text><text x="45" y="1082" font-size="18">实体保存数据；服务完成权限后的业务校验、事务及协作。依赖不代表异步消息或调用时序。</text></svg></section></main><article id="notes"><h1 style="font-size:32px">讲稿与备答</h1><pre># 校园自习室预约管理系统概要设计汇报讲稿
+
+修订日期：2026年11月16日。正文约5至6分钟，建议先练读一次，再按实际语速调整。展示顺序：组件图 → 核心领域类图 → 服务协作类图。括号内为操作提示，不必读出。
+
+## 开场 约20秒
+老师、同学们好，我负责汇报我们组校园自习室预约管理系统概要设计中的组件图和类图。我们的设计围绕“查询座位、创建预约、签到签退、异常处理”这条业务主线展开。组件图说明模块如何分工和协作，类图说明这些功能由哪些对象和服务承接。当前已经有需求、系统设计文档和可交互的界面原型，下面介绍的是设计方案。
+
+## 第一张 组件图 约90秒
+（先指向顶部，再向下移动。）
+
+系统采用B/S和前后端分离架构。上方是学生端与管理端，规划使用Vue 3和TypeScript。学生端提供找座、预约、签到和个人记录，管理端提供场地维护、人工签到、违约复核和统计。两端通过REST接口访问后端，Nginx负责静态资源与HTTPS反向代理。
+
+API控制器负责参数校验、调用业务服务及返回统一结果。身份与权限组件使用Spring Security和JWT，受保护操作在执行前必须通过认证授权；学生操作还必须检查预约是不是自己的。
+
+中间是业务服务层。场地与座位组件管理房间、座位、开放规则和签到码。预约组件处理资格、时段冲突、创建与取消。履约组件处理签到、签退、人工确认和签到超时。违约与申诉组件负责候选记录、申诉复核及预约资格计算。统计组件只读汇总业务数据，审计组件记录关键操作人、时间和结果。
+
+下方是MyBatis-Plus数据访问组件和MySQL数据库。事务放在服务层组织，数据访问层负责查询、更新和锁定查询。这里划分的是逻辑组件，它们可以在同一个Spring Boot应用中部署。虚线箭头表示调用者依赖提供者，不表示操作的先后顺序。
+
+## 第二张 核心领域类图 约100秒
+（先指向中间的Reservation，再介绍四周关系。）
+
+这张图以Reservation预约类为中心。每条预约对应一个User和一个Seat；一个用户或座位可以有多条历史预约，因此两边都是一对多。多条历史记录不代表允许同一时段重复预约，时间冲突还需要服务层校验。
+
+场地方面，一个StudyRoom包含多个Seat，并配置多条OpeningRule。开放规则记录星期、开放时间以及生效日期，预约时需要结合座位维护状态共同判断是否可用。
+
+预约最多对应一条CheckIn签到记录。刚创建预约时尚未签到，所以是零或一；签到后才创建记录，再把签退时间补进这条记录。数据库中签到表的预约编号设置唯一约束，防止一条预约产生重复签到记录。
+
+预约最多对应一条Violation违约记录，这里同样是零或一。违约候选、申诉和复核围绕这条记录处理。多次处理的历史存入ViolationEvent，所以一条违约可以有多条处理事件。这样既能保存当前处理状态，也能保留每次处理人、原因和时间；撤销违约时不会把原始记录删掉。
+
+图中实体主要保存业务数据，例如预约的起止时间与状态、用户的密码哈希、签到时间和违约状态。为了让图适合汇报，楼栋、签到码和审计日志等辅助实体没有全部展开；业务方法放在下一张服务协作图中说明。
+
+## 第三张 服务协作类图 约90秒
+（指向ReservationService，再指向CheckInService和ViolationService。）
+
+ReservationService提供创建、取消和可用性查询。创建预约时，它需要场地规则以及ViolationService提供的预约资格判断。按照设计方案，在同一事务中先锁定用户行，再锁定座位行，然后用当前读检查用户和座位是否存在重叠的有效预约，最后写入预约。这样同时考虑了两个人抢同一个座位，以及同一个人同时抢不同座位的情况。
+
+预约时段采用左闭右开的区间。例如14点到15点，与15点到16点不重叠。取消只允许本人操作待签到预约，并且距离开始时间必须严格大于30分钟。
+
+CheckInService负责签到、签退、人工确认及超时扫描。当前设计的签到窗口是从预约开始到开始后15分钟之前，截止时刻不再接受普通签到。服务端核对身份、预约状态、时间窗口及该房间的有效六位签到码，成功后在同一事务中写入签到记录并更新预约状态。
+
+超时扫描每分钟执行，重新检查待签到状态后，更新为未签到违约并调用违约服务生成候选。状态条件更新与预约编号唯一约束一起保证重复扫描不会生成重复违约。复核由ViolationService处理，关键管理操作记录审计日志。
+
+## 结束 约20秒
+这两类图分别落实了模块职责、对象关系和服务协作，为后续接口、数据库和详细设计提供依据。我们还需要统一签到验收时间、信用暂停起算和签到码轮换等细节，并通过后端实现与测试验证并发和状态一致性。我的汇报结束，谢谢大家。
+
+## 时间紧张时的三分钟用法
+保留开场；组件图每层只讲一句，重点点出六个业务组件；类图重点讲用户与预约、预约与签到、预约与违约及处理事件；服务图只讲固定锁顺序和签到超时的幂等处理。备答内容不主动逐条念。
+
+
+# 汇报备答与资料差异核对
+
+## 使用依据与成果范围
+本次以压缩包docs/校园自习室预约管理系统_系统设计方案.docx V1.0为主要设计依据，对照软件需求规格说明.docx V1.0、需求讨论结果.docx、项目组讨论记录表.docx，以及prototype/README.md与app.js。压缩包共20个目录或文件条目，没有Java后端源文件、数据库迁移脚本或后端测试。已有的是设计文档和HTML/CSS/原生JavaScript界面原型，Vue与Spring Boot等属于规划技术栈。不能称为从已实现后端代码反向导出的类图，也不能声称已完成并发测试。
+
+重绘依据：组件图对应设计方案第2.1、2.2节；实体关系与唯一约束对应第4.1、4.2节；服务方法对应第4.3节；预约和签到规则对应第3.1、3.2节；安全与签到码对应第6节；待确认项对应第8节。字段类型为便于展示的简写，并非已经确定的Java声明。OpeningRule、ViolationEvent等名称由设计表结构整理；核心图省略Building、CheckInCode、AuditLog、部分属性及关联。
+
+## 相比上一版已修正的内容
+- Attendance统一为详细设计使用的CheckIn。
+- 预约与违约从0..*修正为0..1，与violation.reservation_id唯一约束一致。
+- 增加OpeningRule与ViolationEvent，区分当前违约记录和历次处理事件。
+- 将canReserve归入ViolationService；创建取消、签到签退等职责按设计文档归入相应服务。
+- 组件图细化为身份权限、场地、预约、履约、违约申诉、统计和审计，并明确API与持久层。
+- 补充开始前严格大于30分钟才能取消、15分钟签到窗口、5分钟签到码有效期及固定锁顺序。
+
+## 材料中需要统一的差异
+
+| 问题 | 证据与当前汇报口径 | 尚需处理 |
+|---|---|---|
+| 签到15分钟与20分钟 | 需求4.2.6和设计3.2采用15分钟；需求AC-03写20分钟。汇报按[start,start+15分钟)讲解 | 设计第8节把20分钟解释为最迟处理验收点，但该解释仍需确认；不能说窗口为20分钟 |
+| 原型写提前15分钟签到 | app.js预约成功提示如此，与业务规则相反 | 汇报讲开始后15分钟内；现场演示前应单独修订原型文案，本次未改源项目 |
+| 原型签到验证 | app.js只验证六位数字格式，随后显示成功，并未核对真正的签到码、身份或时间；README给出演示码 | 原型只能展示交互，不能证明后端鉴权与签到规则已实现 |
+| 预约与签到的数量 | 需求4.3.1及嵌入ER图写1:1；设计4.1明确零或一，check_in表设预约外键唯一 | 生命周期中未签到预约没有签到记录，汇报采用1对0..1 |
+| 区间预约的并发 | 早期讨论写座位时段唯一约束、座位置为占用；详细设计3.1改为用户与座位行锁、当前读重叠检查 | 普通唯一约束只排除相同键，不能排除任意重叠区间；采用详细设计方案，不宣传一个全局占用标志 |
+| 通知服务 | 需求4.4.1和设计内嵌旧顺序图包含异步通知；设计2.2组件表与5.2文字未给出通知接口和保障 | 本次核心图不引入消息队列或独立通知服务；提醒交付方式需进一步明确 |
+| 违约计数与暂停 | 需求写30天内3次有效违约暂停7天；设计3.3建议候选确认后计数，按触发阈值的违约发生时间起算 | 第8节仍列为待确认，不能将候选直接等同有效违约；迟确认及撤销后的重算边界需细化 |
+| 签到码 | 六位数字、有效5分钟已有文档依据 | 手动还是自动换码、现场传达方式仍待定，不宣称已自动轮换 |
+| 预约范围与结束规则 | 早期讨论的提前7天、最长4小时标为暂定；设计第8节仍待明确 | 不当作已确定限制；提前签退释放、到期未签退及场地变更处理同样待确认 |
+
+## 老师可能追问的问题
+
+**1. 为什么叫组件图，里面却没有把每个功能都部署成独立服务？**
+组件表达职责和接口依赖，部署方式是另一层设计。这里的逻辑组件规划在同一个Spring Boot应用内协作，没有独立微服务部署要求。
+
+**2. 为什么类图分成实体和服务两张？**
+实体图解释业务数据及数量关系，服务图解释业务操作和协作。设计方案第4.3节已经区分实体、业务服务和Mapper；分图让属性、关联与服务方法更容易读清。
+
+**3. 为什么没有Student与Administrator的继承关系？**
+需求分析把管理员视为角色；详细数据设计采用user_account.role。当前实现设计采用角色授权，不需要为了两个页面入口强行增加继承层次。若未来增加不同用户类型的独立行为，再评估继承或角色关联。
+
+**4. 一对多关系是否意味着允许重复预约？**
+不意味着。多重性描述历史记录数量。有效预约还需满足区间不重叠，重叠条件是已有start &lt; 请求end且已有end &gt; 请求start。端点相接不重叠。
+
+**5. 为什么锁用户行之后还要锁座位行？**
+用户锁避免同一用户在同一时段并发预约多个座位；座位锁避免多个用户并发抢同一座位。必须在同一事务内加锁、当前读校验、写入并提交；所有影响资格或可用性的写操作遵守设计中的锁协议。顺序一致可降低死锁风险，不能承诺绝无死锁，仍需回滚重试处理。
+
+**6. 签到与超时任务同时执行怎么办？**
+采用一致加锁顺序，锁内重新检查状态与服务器时间，避免基于过期快照更新。即使签到先拿到锁，若已经超过截止时刻也必须拒绝。状态条件更新和唯一约束防止重复签到、重复候选。
+
+**7. 为什么违约只有一条，还能反复申诉复核？**
+Violation表示某次预约的违约事项，ViolationEvent保存每次处理动作。一条事项配多条事件即可追溯处理过程，无需为同一预约重复创建违约事项。
+
+**8. 撤销违约能直接恢复原预约吗？**
+按设计3.2与3.3，不能。复核修改违约处理状态并重算信用，预约终态不直接恢复，以免占用已经重新分配给别人的座位；继续使用需要另行预约。
+
+**9. 为什么不用组合关系连接房间、座位？**
+文档没有确定对象删除时的级联生命周期规则。普通关联足以表达归属，避免把历史预约、座位删除及数据保留策略提前绑定为组合语义。
+
+**10. 现在是否已经达到300人在线和响应时间指标？**
+尚无证据。文档给出容量与性能目标，压缩包没有后端实现和压测结果。汇报时只能说“设计目标”，不能说“已经达到”。
+
+**11. 为什么没有把统计画成数据库中的Summary实体？**
+需求中的Summary属于分析概念，详细设计由StatisticsService聚合业务表，未定义独立Summary表。本次不将统计结果误当作已设计的持久实体。
+
+**12. 服务协作图是否列出了全部调用？**
+不是。它突出预约、履约和违约之间的关键依赖；各服务到对应Mapper、管理操作到审计的共同依赖以文字归并。RoomService与StatisticsService原文没有方法签名，图上保留职责说明，不虚构具体API。
+
+## 汇报前最后检查
+用展示页按左右箭头切换，确认投影上类名和0..1可读。若现场演示原型，先说明它是交互原型；不要用原型成功提示证明业务校验已实现。涉及未统一条目，回答“当前设计采用这一口径，需求与验收文本还需同步”，不要临场补造已确认结论。
+</pre></article><script>let idx=0;const ss=[...document.querySelectorAll('section')],counter=document.querySelector('#counter');function show(n){idx=Math.max(0,Math.min(ss.length-1,n));ss.forEach((s,i)=>s.classList.toggle('active',i===idx));counter.textContent=(idx+1)+' / '+ss.length}document.querySelector('#prev').onclick=()=>show(idx-1);document.querySelector('#next').onclick=()=>show(idx+1);document.querySelector('#toggle').onclick=()=>document.body.classList.toggle('reading');document.onkeydown=e=>{if(e.key==='ArrowRight')show(idx+1);if(e.key==='ArrowLeft')show(idx-1)};show(0);</script></html>
